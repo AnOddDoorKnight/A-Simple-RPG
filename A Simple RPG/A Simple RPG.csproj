@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,5 +9,7 @@
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
     <Authors>AnOddDoorKnight</Authors>
   </PropertyGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="C:\Users\gooey\source\repos\Personal Essentials\PersonalEssentials.csproj" />
+	</ItemGroup>
 </Project>
