@@ -16,6 +16,12 @@ public abstract class Entity
 		[CreatureType.Slime] = 10,
 	};
 }
+public interface Attacks
+{
+	Damage Damage { get; set; }
+	uint ACDamage { get; set; }
+	int DealDamage();
+}
 public struct Integrity
 {
 	public bool isDead = false;

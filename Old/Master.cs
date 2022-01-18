@@ -10,28 +10,19 @@ namespace ASimpleRPG;
 static class Master
 {
 	static Character character;
+	static FileManager saveFile;
 	static Master()
     {
 		Console.Title = $"ASimpleRPG: {SplashTitle()}";
 		Console.WriteLine("By AnOddDoorKnight#0068");
-		FileManager.DirectoryBuilder($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\Saves.ddl");
+		saveFile = new FileManager($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\Save.sl2", true);
+		saveFile.ReadFile(true);
 		character = Saves.Load();
 	}
 	static void Main()
 	{
 		
 	}
-	static class Idle
-	{
-
-	}
-	static class Fight
-	{
-
-	}
-	// Use OddsLibrary for this!	
-	//if (File.ReadAllLines(saveDataDirectory).Length > 0) character = new(true);
-	//else character = new(false);
 	
 	// https://terraria.fandom.com/wiki/Title_messages
 	static string SplashTitle() => yellowText[new Random().Next(yellowText.Length)];
@@ -42,6 +33,7 @@ static class Master
 		"1 + 1 = 0"
 	};
 }
+/*
 public static class Saves
 {
 	static Saves()
@@ -131,3 +123,4 @@ public static class Saves
 
 	
 }
+*/

@@ -2,6 +2,7 @@
 
 class Enemy : Entity
 {
+	public Attacks attacks;
 	public Enemy(CreatureType input_enemyType, Integrity? Integrity = null) : base(input_enemyType, Integrity)
 	{
 		

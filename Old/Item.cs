@@ -24,50 +24,8 @@ public enum ItemEnum
     Fist,
     SavingGrace,
 }
-
 #region Items
 #region Weapons
-public enum PhysicalDamageType
-{
-	Physical,
-	Slashing,
-	Piercing,
-	Bludgeoning
-}
-public enum ElementalDamageType
-{
-	Magic, 
-	Fire,
-	Lightning,
-	Dark,
-}
-public struct Damage
-{
-    public readonly short @base, damage;
-    public readonly byte dice;
-    public Damage(short @base, short damage, byte dice)
-	{
-        this.@base = @base;
-        this.damage = damage;
-        this.dice = dice;
-	}
-}
-public struct DamageType
-{
-	public readonly PhysicalDamageType[] type;
-	public readonly ElementalDamageType? elementalType;
-    public PhysicalDamageType this[int index] => type.Length == 1 ? type[1] : type[index];
-	public DamageType(PhysicalDamageType[] types, ElementalDamageType? elementalType = null)
-	{
-		this.elementalType = elementalType;
-		type = types;
-	}
-	public DamageType(PhysicalDamageType type, ElementalDamageType? elementalType = null) 
-	{
-		this.elementalType = elementalType;
-		this.type = new PhysicalDamageType[] {type};
-	}
-}
 public sealed class QuarterStaff : Weapon
 {
 	public QuarterStaff(byte amount = 1) : base(Stats.StatType.Strength, new DamageType(PhysicalDamageType.Bludgeoning), new Damage(0, 4, 1), amount)
@@ -86,13 +44,9 @@ public sealed class F3ootStick : Weapon
     public F3ootStick(byte amount = 1) : base(amount) 
     { 
 		name = "3-Foot Stick";
-        description = "A step below a quarterstaff. More like a dimestaff, really.";
+        description = "A step below a quarterstaff. More like a dimestaff, really. Commonly used for hatchets and such.";
 		rarity = Rarity.Common;
 		massPerItem = 0.5f;
-    }
-    public override int Swing()
-    {
-        throw new NotImplementedException();
     }
 }
 public sealed class Fists : Weapon
@@ -102,10 +56,6 @@ public sealed class Fists : Weapon
         name = "Fists";
         description = "Your bare hands, don't go swordfighting with them.";
     }
-    public override int Swing()
-    {
-        throw new NotImplementedException();
-    }
 }
 public sealed class SavingGrace : Weapon
 {
@@ -113,10 +63,6 @@ public sealed class SavingGrace : Weapon
     { 
         name = "Saving Grace";
         description = "Fragile longsword thats relatively cheap to make. Commonly used by knight wannabes.";
-    }
-    public override int Swing()
-    {
-        throw new NotImplementedException();
     }
 }
 public abstract class Weapon : Item
@@ -133,14 +79,7 @@ public abstract class Weapon : Item
         return totalDamage;
     }
     // Should be updated whenever the player is using it!
-    public Weapon
-    (
-        Stats.StatType Modifier,
-        DamageType damageType,
-        Damage damage,
-		byte amount = 1
-	) 
-	: base(quantity: amount) 
+    public Weapon ( Stats.StatType Modifier, damageType damageType, byte amount = 1) : base(amount) 
 	{
 		this.damageType = damageType;
 		@base = damage.@base;
@@ -161,17 +100,14 @@ public abstract class Item
     public byte Quantity 
     { 
         get => _quantity; 
-        set 
-        { 
-            try 
-            { 
-                _quantity = checked(_quantity = value); 
-            } 
-            catch { _quantity = 255; } 
-        } 
+        set => _quantity = value;
     }
     public float Mass => massPerItem ?? 0 * Quantity;
     public uint? cost = null;
+    public virtual void Display() 
+    {
+
+    }
     // Initializer/Constructor
     public Item(byte quantity = 1) => Quantity = quantity;
 }

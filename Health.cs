@@ -1,0 +1,1 @@
+namespace ASimpleRPG.Entities;

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>ASimpleRPG</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <Authors>AnOddDoorKnight</Authors>
+  </PropertyGroup>
+	<ItemGroup>
+    <Compile Remove ="Old/Character.cs"/>
+    <None Include ="Old/Character.cs"/>
+    <Compile Remove ="Old/DamageDealing.cs"/>
+    <None Include ="Old/DamageDealing.cs"/>
+    <Compile Remove ="Old/Entities.cs"/>
+    <None Include ="Old/Entities.cs"/>
+    <Compile Remove ="Old/Item.cs"/>
+    <None Include ="Old/Item.cs"/>
+    <Compile Remove ="Old/Master.cs"/>
+    <None Include ="Old/Master.cs"/>
+    <Compile Remove ="Old/UniversalEntityData.cs"/>
+    <None Include ="Old/UniversalEntityData.cs"/>
+		<ProjectReference Include="C:\Users\gooey\source\repos\Personal Essentials\PersonalEssentials.csproj" />
+	</ItemGroup>
+</Project>
