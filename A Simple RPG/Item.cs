@@ -7,13 +7,13 @@ namespace ASimpleRPG.Objects;
 
 public static class ItemLibrary
 {
-    public static virtual Item this[ItemEnum wantedItem, uint Quantity = 1]
+    public static virtual Item this[ItemEnum wantedItem, byte Quantity = 1]
     {
         get => wantedItem switch 
         {
-            ItemEnum.F3ootStick => new F3ootStick(Quantity);
-            ItemEnum.Fist => new Fists();
-            ItemEnum.SavingGrace => new SavingGrace(Quantity);
+            ItemEnum.F3ootStick => new F3ootStick(Quantity),
+            ItemEnum.Fist => new Fists(),
+            ItemEnum.SavingGrace => new SavingGrace(Quantity)
         };
     }
 
@@ -41,6 +41,17 @@ public enum ElementalDamageType
 	Lightning,
 	Dark,
 }
+public struct Damage
+{
+    public readonly short @base, damage;
+    public readonly byte dice;
+    public Damage(short @base, short damage, byte dice)
+	{
+        this.@base = @base;
+        this.damage = damage;
+        this.dice = dice;
+	}
+}
 public struct DamageType
 {
 	public readonly PhysicalDamageType[] type;
@@ -57,20 +68,9 @@ public struct DamageType
 		this.type = new PhysicalDamageType[] {type};
 	}
 }
-static class DefaultItem
-{
-    public static int Swing(short damage, short @base, byte dice, byte turns)
-    {
-        Random Random = new();
-        int totalDamage = @base;
-        for (int i = 1; i <= dice; i++)
-            totalDamage += Random.Next(1, damage);
-        return totalDamage;
-    }
-}
 public sealed class QuarterStaff : Weapon
 {
-	public QuarterStaff(byte amount = 1) : base(PhysicalDamageType.Bludgeoning,  ,amount)
+	public QuarterStaff(byte amount = 1) : base(Stats.StatType.Strength, new DamageType(PhysicalDamageType.Bludgeoning), new Damage(0, 4, 1), amount)
 	{
 		name = "Quarterstaff";
 		description = "7.5 foot stick. Incredibly fast and a viable weapon, at least for just a stick.";
@@ -79,8 +79,6 @@ public sealed class QuarterStaff : Weapon
 		massPerItem = 1f;
 		cost = null;
 		// Damage numbers and values
-
-
 	}
 }
 public sealed class F3ootStick : Weapon
@@ -134,23 +132,20 @@ public abstract class Weapon : Item
             totalDamage += Random.Next(1, damage);
         return totalDamage;
     }
-	// Should be updated whenever the player is using it!
+    // Should be updated whenever the player is using it!
     public Weapon
-	(
-		Stats.StatType Modifier, 
-		DamageType damageType, 
-		short @base, 
-		short damage, 
-		byte dice, 
-		Stats stats,
+    (
+        Stats.StatType Modifier,
+        DamageType damageType,
+        Damage damage,
 		byte amount = 1
 	) 
 	: base(quantity: amount) 
 	{
 		this.damageType = damageType;
-		this.@base = @base;
-		this.damage = damage;
-		this.dice = dice;
+		@base = damage.@base;
+		this.damage = damage.damage;
+		dice = damage.dice;
 	}
 }
 #endregion
