@@ -5,7 +5,7 @@ using ASimpleRPG.Entities;
 namespace ASimpleRPG;
 static class Master
 {
-	const saveName = "Save.sl2";
+	const string saveName = "Save.sl2";
 	static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
 	static PlayableCharacter player;
 	static Master()

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A Simple RPG", "A Simple RPG\A Simple RPG.csproj", "{FA91392B-9CA8-40A7-9977-4C97BD3EAF61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "A Simple RPG", "A Simple RPG.csproj", "{B59821AB-A134-48D0-A188-34015841BB24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FA91392B-9CA8-40A7-9977-4C97BD3EAF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA91392B-9CA8-40A7-9977-4C97BD3EAF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA91392B-9CA8-40A7-9977-4C97BD3EAF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA91392B-9CA8-40A7-9977-4C97BD3EAF61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B59821AB-A134-48D0-A188-34015841BB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59821AB-A134-48D0-A188-34015841BB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59821AB-A134-48D0-A188-34015841BB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59821AB-A134-48D0-A188-34015841BB24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
