@@ -10,7 +10,7 @@
 		<Authors>AnOddDoorKnight</Authors>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="../PersonalEssentials.1.0.0.nupkg" Version="1.0.0"/>
+		<PackageReference Include="PersonalEssentials" Version="1.0.0"/>
 		<Compile Remove="Old/Entities/Character.cs" />
 		<None Include="Old/Entities/Character.cs" />
 		<Compile Remove="Old/DamageDealing.cs" />
@@ -22,6 +22,6 @@
 		<Compile Remove="Old/Master.cs" />
 		<None Include="Old/Master.cs" />
 		<Compile Remove="Old/Entities/UniversalEntityData.cs" />
-		<None Include="Old/Entities/UniversalEntityData.cs"/>
+		<None Include="Old/Entities/UniversalEntityData.cs" />
 	</ItemGroup>
 </Project>
