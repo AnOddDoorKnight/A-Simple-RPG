@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using OddsLibrary.IO;
 using ASimpleRPG.Entities;
 namespace ASimpleRPG;
@@ -10,6 +9,14 @@ public static class Master
 	static PlayableCharacter player;
 	static Master()
 	{
+		// https://terraria.fandom.com/wiki/Title_messages
+		string[] yellowText =
+		{
+			"return splashText[Random.Next(splashText.Length)]",
+			"Your fist is your weapon!",
+			"1 + 1 = 0"
+		};
+		Console.Title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
 		// This is for demo control only!
 		player = new PlayableCharacter();
 		NewRound += player.StatusEffects.LowerByRound;
@@ -20,4 +27,17 @@ public static class Master
 	}
 	public static event EventHandler NewRound;
 	public static void InvokeNewRound() => NewRound?.Invoke(null, EventArgs.Empty);
+}
+public interface ISaveManager
+{
+	void Load();
+}
+public enum Stats
+{
+	Strength,
+	Dexterity,
+	Constitution,
+	Wisdom,
+	Intelligence,
+	Charisma
 }
