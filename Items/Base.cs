@@ -4,9 +4,11 @@ public abstract class Item
 {
     protected static Random Random = new();
     public string? name, description;
-    public Item()
+    public Rarity rarity = Rarity.Common;
+    public uint amount;
+    public Item(uint amount)
     {
-        
+        this.amount = amount;
     }
     public override string ToString() => $"{name}: {description}";
 }

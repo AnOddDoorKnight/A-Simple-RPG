@@ -1,13 +1,17 @@
+using ASimpleRPG.Items;
 using System;
 namespace ASimpleRPG.Entities;
-public class PlayableCharacter : Entity, ISaveManager
+public class Human : Entity, ISaveManager
 {
-    public PlayableCharacter() : base(new HealthData(15), new StatusEffects(100, 100, 100), new Resistances())
+	private Weapon? _weapon;
+	public Weapon EquippedWeapon { get => _weapon ?? new Fists(); set => _weapon; }
+	public Armor armor;
+    public Human() : base(new HealthData(15), new StatusEffects(100, 100, 100), new Resistances())
     {
 
     }
 
-    void ISaveManager.Load() => throw new NotImplementedException();
+    
 }
 
 /*
