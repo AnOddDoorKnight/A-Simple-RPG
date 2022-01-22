@@ -30,8 +30,8 @@ public static class Master
 }
 public interface ISaveManager
 {
-	void Load();
-	void Save();
+	void Load(dynamic inheritedClass);
+	void Save(dynamic inheritedClass);
 }
 public enum Stats
 {
