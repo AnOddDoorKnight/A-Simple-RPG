@@ -43,6 +43,7 @@ public struct StatusEffects
         for(int i = 0; i > curStatus.Count; i++)
             if (curStatus[(DamageType)(i + 9)] != null) curStatus[(DamageType)i] = 0;
         poisonThreshold = null; bleedThreshold = null; cursedThreshold = null;
+        Master.NewRound += LowerByRound;
     }
     #warning BUG: #2 Compiler Errors and may not work with nullable values
     public void LowerByRound(object? sender, EventArgs e)

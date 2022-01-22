@@ -10,7 +10,7 @@
 		<Authors>AnOddDoorKnight</Authors>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="PersonalEssentials" Version="1.0.0"/>
+		<PackageReference Include="PersonalEssentials" Version="1.0.0" />
 		<Compile Remove="Old/Entities/Character.cs" />
 		<None Include="Old/Entities/Character.cs" />
 		<Compile Remove="Old/DamageDealing.cs" />
@@ -23,5 +23,12 @@
 		<None Include="Old/Master.cs" />
 		<Compile Remove="Old/Entities/UniversalEntityData.cs" />
 		<None Include="Old/Entities/UniversalEntityData.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Entities\Feral\Mountable\" />
+	  <Folder Include="Entities\Humans\Friendly\Vendors\" />
+	  <Folder Include="Entities\Humans\Enemy\" />
+	  <Folder Include="Entities\Bosses\" />
+	  <Folder Include="Areas\" />
 	</ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
+using ASimpleRPG.Entities;
 namespace ASimpleRPG.Items;
 
-public abstract Armor : Item
+public abstract class Armor : Item
 {
     public uint AC;
     public Resistances resistances;

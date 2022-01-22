@@ -19,3 +19,7 @@ public interface IInteract
 {
 
 }
+public interface IVendor
+{
+
+}

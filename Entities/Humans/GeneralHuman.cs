@@ -1,11 +1,14 @@
 using ASimpleRPG.Items;
+using System.Collections.Generic;
 using System;
+using OddsLibrary.Algebra;
 namespace ASimpleRPG.Entities;
-public class Human : Entity, ISaveManager
+public class Human : Entity
 {
 	private Weapon? _weapon;
 	public Weapon EquippedWeapon { get => _weapon ?? new Fists(); set => _weapon; }
 	public Armor armor;
+	public Dictionary<Stats, >
     public Human() : base(new HealthData(15), new StatusEffects(100, 100, 100), new Resistances())
     {
 
@@ -13,8 +16,6 @@ public class Human : Entity, ISaveManager
 
     
 }
-
-/*
 public struct Stat
 {
 	public const byte softCap = 18, @base = 10, hardCap = 99;
@@ -25,4 +26,3 @@ public struct Stat
 	// Use this to determine health, damage and such.
 	public sbyte Modifier() => Value > softCap ? (sbyte)(4 + Math.Truncate((double)(Value - softCap) / 4)) : (sbyte)Math.Truncate((double)(Value - @base) / 2);
 }
-*/
