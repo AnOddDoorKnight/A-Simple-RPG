@@ -29,6 +29,5 @@
 	  <Folder Include="Entities\Humans\Friendly\Vendors\" />
 	  <Folder Include="Entities\Humans\Enemy\" />
 	  <Folder Include="Entities\Bosses\" />
-	  <Folder Include="Areas\" />
 	</ItemGroup>
 </Project>
