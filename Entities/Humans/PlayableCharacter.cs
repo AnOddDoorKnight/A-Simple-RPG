@@ -8,10 +8,9 @@ public class PlayableCharacter : Human, ISaveManager
 	{
 		team = 1;
 	}
-
-	void ISaveManager.Load(dynamic inheritedClass)
+	dynamic ISaveManager.Load()
 	{
-		if (inheritedClass != typeof(PlayableCharacter)) throw new InvalidOperationException();
+		return new PlayableCharacter();
 		throw new NotImplementedException();
 	}
 	void ISaveManager.Save(dynamic inheritedClass)

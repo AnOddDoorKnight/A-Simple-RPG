@@ -11,10 +11,10 @@ public sealed class Fists : Weapon
         damageType = DamageType.Bludgeoning;
     }
 }
-public sealed class SavingGrace : Weapon
-{
-    
-}
+//public sealed class SavingGrace : Weapon
+//{
+//    
+//}
 public sealed class HeavyBranch : Weapon
 {
     public HeavyBranch(Modifier generalModifier, uint amount) : base(new WeaponDataPackage(1, 6), generalModifier, generalModifier, amount)

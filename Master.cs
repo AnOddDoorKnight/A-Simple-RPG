@@ -7,7 +7,7 @@ public static class Master
 {
 	const string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
 	static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
-	static World world = new();
+	//static World World = new WorldData.Void();
 	static Master()
 	{
 		// https://terraria.fandom.com/wiki/Title_messages
@@ -18,20 +18,16 @@ public static class Master
 		};
 		Console.Title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
 		// This is for demo control only!
-		ISaveManager saveManagerPlayer = new PlayableCharacter();
-
+		//ISaveManager saveManagerPlayer = new PlayableCharacter();
+		//World.Player = saveManagerPlayer.Load();
 	}
 	static void Main()
 	{
 		Console.WriteLine($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}{saveName}");
+		return;
 	}
 	public static event EventHandler? NewRound;
 	public static void InvokeNewRound() => NewRound?.Invoke(null, EventArgs.Empty);
-}
-public interface ISaveManager
-{
-	void Load(dynamic inheritedClass);
-	void Save(dynamic inheritedClass);
 }
 public enum Stats
 {
