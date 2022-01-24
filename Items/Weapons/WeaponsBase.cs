@@ -1,23 +1,9 @@
 using ASimpleRPG.Entities;
 using System;
 namespace ASimpleRPG.Items;
-public sealed class Fists : Weapon
-{
-    public Fists(Modifier damageModifier, Modifier ACModifier) : base(1, 4, damageModifier, ACModifier, 0)
-    {
-        finesse = true;
-        name = "Fists";
-        description = "Hands given form to be best described as tiny flesh hammers.\n\nRepresents the physical skill the user has obtained";
-        damageType = DamageType.Bludgeoning;
-    }
-}
-//public sealed class SavingGrace : Weapon
-//{
-//    
-//}
 public abstract class Weapon : Item
 {
-    public int @base, dice, sides, baseAC;
+    public int @base = -69, dice, sides, baseAC = -420;
     public DamageType damageType;
     #region Traits
     public bool finesse = false;
@@ -38,6 +24,7 @@ public abstract class Weapon : Item
         sides = data.sides;
         dice = data.dice;
 	}
+    #warning TODO: #6 Set a method for setting the bool finesse for items
     public virtual Entities.Damage DealDamage() => new(damageType, @base + (dice * Random.Next(1, sides + 1)), Random.Next(1, 21) + baseAC);
     public override string ToString() => base.ToString() + $"\n{damageType} based\nbase: {@base}, ACBase: {baseAC}\nRolls {dice} {sides}-sided dice";
 }

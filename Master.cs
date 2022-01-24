@@ -25,7 +25,6 @@ public static class Master
 	static void Main()
 	{
 		Console.WriteLine($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}{saveName}");
-		return;
 	}
 	public static event EventHandler? NewRound;
 	public static void InvokeNewRound() => NewRound?.Invoke(null, EventArgs.Empty);
