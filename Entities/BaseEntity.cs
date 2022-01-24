@@ -15,7 +15,7 @@ public abstract class Entity
 }
 
 // This is used for NPCs and the such *although it may be better to have it a separate derived class but oh well*
-#warning TODO: Finish the Interact Interface
+#warning TODO: #5 Finish the Interact Interface
 public interface IInteract
 {
 

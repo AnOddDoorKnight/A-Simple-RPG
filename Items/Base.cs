@@ -10,7 +10,7 @@ public abstract class Item
     {
         this.amount = amount;
     }
-    public override string ToString() => $"{name}: {description}";
+    public override string ToString() => $"{name}\n{description}";
 }
 public enum Rarity : sbyte
 {
