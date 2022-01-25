@@ -21,11 +21,11 @@ public abstract class Weapon : Item
             Stats.Dexterity => finesse ? damageModifier.calculatedModifier : damageModifier.calculatedModifier / 2,
             _ => throw new ArgumentException("Invalid Weapon AC Modifier Type!")
         };
-        sides = data.sides;
-        dice = data.dice;
+        this.sides = sides;
+        this.dice = dice;
 	}
     #warning TODO: #6 Set a method for setting the bool finesse for items
-    public virtual Entities.Damage DealDamage() => new(damageType, @base + (dice * Random.Next(1, sides + 1)), Random.Next(1, 21) + baseAC);
+    public virtual Damage DealDamage() => new(damageType, @base + (dice * Random.Next(1, sides + 1)), Random.Next(1, 21) + baseAC);
     public override string ToString() => base.ToString() + $"\n{damageType} based\nbase: {@base}, ACBase: {baseAC}\nRolls {dice} {sides}-sided dice";
 }
 /// <summary>

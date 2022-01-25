@@ -1,5 +1,5 @@
 ﻿namespace ASimpleRPG.WorldData;
-public class Hidden : World
+public class Hub : World
 {
 
 }

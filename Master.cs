@@ -7,7 +7,7 @@ public static class Master
 {
 	const string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
 	static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
-	public static World World = new Hidden();
+	public static World World = new Hub();
 	//static World World = new WorldData.Void();
 	static Master()
 	{
