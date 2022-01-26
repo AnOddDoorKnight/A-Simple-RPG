@@ -38,3 +38,9 @@ public enum Stats
 	Intelligence,
 	Charisma
 }
+// Might not be used, but is here due to updates in personal essentials
+public enum CreatureType
+{
+	Player,
+	Slime
+}
