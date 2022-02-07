@@ -7,7 +7,8 @@ public static class Master
 {
 	const string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
 	static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
-	public static World World = new Hub();
+	public static World WorldInstance { get; private set; } = new World.Hub();
+	internal static WorldObj<PlayableCharacter> player = new(new PlayableCharacter(), 0, 0, 0);
 	//static World World = new WorldData.Void();
 	static Master()
 	{
@@ -18,9 +19,12 @@ public static class Master
 			"1 + 1 = 0"
 		};
 		Console.Title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
-		// This is for demo control only!
 		//ISaveManager saveManagerPlayer = new PlayableCharacter();
 		//World.Player = saveManagerPlayer.Load();
+	}
+	private static void DemoControl()
+	{
+
 	}
 	static void Main()
 	{

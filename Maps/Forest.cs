@@ -1,5 +1,8 @@
 ﻿namespace ASimpleRPG.WorldData;
-public class Forest : World
-{
 
+public abstract partial class World
+{
+	//public class Forest : World
+	//{
+	//}
 }

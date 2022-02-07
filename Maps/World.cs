@@ -1,16 +1,17 @@
 ﻿using ASimpleRPG.Entities;
 using System.Collections.Generic;
 namespace ASimpleRPG.WorldData;
-public abstract class World
+public abstract partial class World
 {
-	public List<WorldObj<Entity>> Entities = new();
-	public WorldObj<PlayableCharacter> Player = new(new PlayableCharacter(), 0, 0, 0);
-	public Room[] Rooms;
-	public World(Room[] rooms) => Rooms = rooms;
+	public List<WorldObj<Entity>> otherEntities = new();
+	public abstract Room[] Rooms { get; }
+	public byte currentRoom;
 }
 public class Room
 {
-	
+	public List<RoomObj<Entity>> Entities = new();
+	public AbstractRoomPoint[] roomPoints;
+	public Room(AbstractRoomPoint[] roomPoints) => this.roomPoints = roomPoints;
 }
 public struct AbstractRoomPoint
 {
@@ -19,18 +20,5 @@ public struct AbstractRoomPoint
 	{
 		this.X = X;
 		this.Y = Y;
-	}
-}
-public class WorldObj<T> where T : class
-{
-	public T Value;
-	public sbyte X, Y;
-	public byte Room;
-	public WorldObj(T worldObj, sbyte X, sbyte Y, byte Room)
-	{
-		Value = worldObj;
-		this.X = X;
-		this.Y = Y;
-		this.Room = Room;
 	}
 }
