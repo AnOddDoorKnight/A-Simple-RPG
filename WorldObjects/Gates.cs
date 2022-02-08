@@ -13,10 +13,9 @@ public struct WorldGate
 }
 public struct Gate
 {
-	public byte leadsTo, ID;
-	public Gate(byte leadsTo, byte ID)
+	public byte leadsTo;
+	public Gate(byte leadsTo)
 	{
-        this.ID = ID;
 		this.leadsTo = leadsTo;
 	}
 }

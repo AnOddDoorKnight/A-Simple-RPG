@@ -9,9 +9,9 @@ public abstract partial class World
 }
 public class Room
 {
-	public List<RoomObj<Entity>> Entities = new(); // Creatures in room
 	public AbstractRoomPoint[] roomPoints; // Parameters of the room
-	public List<RoomObj<StaticObject>> objects = new(); // Objects like boxes in the room
+	public RoomObj<Entity>[]? Entities; // Creatures in room
+	public RoomObj<StaticObject>[]? objects; // Objects like boxes in the room
 	public RoomObj<WorldGate>? worldGate; // door to another world, if it has one
 	public RoomObj<Gate>[] canLeadTo; // doors to other rooms
 	public Room(AbstractRoomPoint[] roomPoints)
