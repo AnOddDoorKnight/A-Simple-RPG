@@ -2,10 +2,11 @@
 using ASimpleRPG.WorldData;
 using OddsLibrary.IO;
 using ASimpleRPG.Entities;
+using ASimpleRPG.Logging;
 namespace ASimpleRPG;
 public static class Master
 {
-	const string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
+	static readonly string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
 	static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
 	public static World WorldInstance { get; private set; } = new World.Hub();
 	internal static WorldObj<PlayableCharacter> player;
@@ -19,15 +20,17 @@ public static class Master
 			"1 + 1 = 0"
 		};
 		Console.Title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
+		Debug.Log($"Setted Title: {Console.Title}", "Startup");
 		DemoControl();
 	}
 	private static void DemoControl()
 	{
+		Debug.Log($"Using Demo Control..", "Demo");
 		player = new(new PlayableCharacter(), 0, 0, 0);
 	}
 	static void Main()
 	{
-		Console.WriteLine($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}{saveName}");
+
 	}
 	public static event EventHandler? NewRound;
 	public static void InvokeNewRound() => NewRound?.Invoke(null, EventArgs.Empty);

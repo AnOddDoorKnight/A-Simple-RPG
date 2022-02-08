@@ -3,28 +3,20 @@ using System.Collections.Generic;
 using System;
 using ASimpleRPG.Entities;
 public abstract partial class World
-{
+{	// This is stored as the whole world, or a group of rooms.
 	public List<WorldObj<Entity>> otherEntities = new();
 	public abstract Room[] Rooms { get; }
-	public byte currentRoom;
 }
-public class Room<T2>
+public class Room
 {
-	public List<RoomObj<Entity>> Entities = new();
-	public AbstractRoomPoint[] roomPoints;
-	public List<dynamic> randomData = new();
-	public WorldGate<T2>? gate;
+	public List<RoomObj<Entity>> Entities = new(); // Creatures in room
+	public AbstractRoomPoint[] roomPoints; // Parameters of the room
+	public List<RoomObj<StaticObject>> objects = new(); // Objects like boxes in the room
+	public RoomObj<WorldGate>? worldGate; // door to another world, if it has one
+	public RoomObj<Gate>[] canLeadTo; // doors to other rooms
 	public Room(AbstractRoomPoint[] roomPoints)
 	{
 		this.roomPoints = roomPoints;
-	}
-}
-public class WorldGate<T2> : RoomObj<WorldGate<T2>> where T2 : World
-{
-	public new Type Value;
-	public WorldGate(sbyte X, sbyte Y) : base(null, X, Y)
-	{
-		Value = typeof(T2);
 	}
 }
 public struct AbstractRoomPoint

@@ -12,7 +12,10 @@ public abstract partial class World
 				new (-1, 2),
 				new (-1, -2),
 				new (1, -2),
-			} ) { randomData = new() { } },
+			} ) 
+			{ 
+
+			} },
 		};
 	}
 }

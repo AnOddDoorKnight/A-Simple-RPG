@@ -6,7 +6,7 @@ public abstract class Weapon : Item
     public int @base = -69, dice, sides, baseAC = -420;
     public DamageType damageType;
     #region Traits
-    public bool finesse = false;
+    public bool finesse = false, agile = false;
 	private Modifier damageModifier, ACModifier;
 	#endregion
     private Weapon(uint amount) : base(amount)
@@ -25,7 +25,7 @@ public abstract class Weapon : Item
     public delegate Damage DdealDamage();
 	public Damage DealDamage() => dealDamage(); // Method as readonly delegate
     private DdealDamage dealDamage; // Delegate here
-   protected virtual Damage FirstDamage()
+    protected virtual Damage FirstDamage()
     {	// This gets called first before doing any other attacks
     	@base = damageModifier.type switch {
 			Stats.Strength => damageModifier.calculatedModifier,
@@ -37,8 +37,9 @@ public abstract class Weapon : Item
             Stats.Dexterity => finesse ? damageModifier.calculatedModifier : damageModifier.calculatedModifier / 2,
             _ => throw new ArgumentException("Invalid Weapon AC Modifier Type!")
         };
+        if (agile) baseAC += 3;
     	dealDamage = SubsequentDamage;
-		return dealDamage(); 
+		return SubsequentDamage(); 
     }
     protected virtual Damage SubsequentDamage() => new(damageType, @base + (dice * Random.Next(1, sides + 1)), Random.Next(1, 21) + baseAC);
     public override string ToString() => base.ToString() + $"\n{damageType} based\nbase: {@base}, ACBase: {baseAC}\nRolls {dice} {sides}-sided dice";
