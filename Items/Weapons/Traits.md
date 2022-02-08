@@ -1,1 +1,0 @@
-- **finesse** = Allows dexterity to be used for scaling

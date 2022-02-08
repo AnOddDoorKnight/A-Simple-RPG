@@ -12,21 +12,16 @@
 	<ItemGroup>
 		<PackageReference Include="PersonalEssentials" Version="1.0.0" />
 		<Compile Remove="Old/Entities/Character.cs" />
-		<None Include="Old/Entities/Character.cs" />
+		<None Include="Entities\Character.cs" />
 		<Compile Remove="Old/DamageDealing.cs" />
-		<None Include="Old/DamageDealing.cs" />
+		<None Include="DamageDealing.cs" />
 		<Compile Remove="Old/Entities/Entities.cs" />
-		<None Include="Old/Entities/Entities.cs" />
+		<None Include="Entities\Entities.cs" />
 		<Compile Remove="Old/Item.cs" />
-		<None Include="Old/Item.cs" />
+		<None Include="Item.cs" />
 		<Compile Remove="Old/Master.cs" />
-		<None Include="Old/Master.cs" />
+		<None Include="Master.cs" />
 		<Compile Remove="Old/Entities/UniversalEntityData.cs" />
-		<None Include="Old/Entities/UniversalEntityData.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Entities\Feral\Mountable\" />
-	  <Folder Include="Entities\Humans\Enemy\" />
-	  <Folder Include="Entities\Bosses\" />
+		<None Include="Entities\UniversalEntityData.cs" />
 	</ItemGroup>
 </Project>
