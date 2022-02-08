@@ -11,18 +11,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="PersonalEssentials" Version="1.0.0" />
-		<Compile Remove="Old/Entities/Character.cs" />
-		<None Include="Old/Entities/Character.cs" />
-		<Compile Remove="Old/DamageDealing.cs" />
-		<None Include="Old/DamageDealing.cs" />
-		<Compile Remove="Old/Entities/Entities.cs" />
-		<None Include="Old/Entities/Entities.cs" />
-		<Compile Remove="Old/Item.cs" />
-		<None Include="Old/Item.cs" />
-		<Compile Remove="Old/Master.cs" />
-		<None Include="Old/Master.cs" />
-		<Compile Remove="Old/Entities/UniversalEntityData.cs" />
-		<None Include="Old/Entities/UniversalEntityData.cs" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Entities\Feral\Mountable\" />

@@ -1,7 +1,7 @@
 namespace ASimpleRPG.Entities;
 public abstract class Feral : Entity
 {
-    protected static System.Random Random = new();
+    protected readonly static System.Random Random = new();
     public Feral(HealthData HealthData, StatusEffects statusEffects, Resistances resistances) : base(HealthData, statusEffects, resistances)
     {
 
