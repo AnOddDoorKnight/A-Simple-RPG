@@ -19,7 +19,14 @@ public class Room
 		this.roomPoints = roomPoints;
 		canLeadTo = gates;
 	}
-	
+	public override string ToString()
+	{
+		char wall = Icons.Data.wall;
+		string output;
+
+
+		return output;
+	}
 }
 public struct AbstractRoomPoint
 {

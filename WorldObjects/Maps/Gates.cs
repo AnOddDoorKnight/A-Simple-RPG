@@ -11,7 +11,7 @@ public class WorldGate
         this.roomTo = roomTo;
 		this.world = world;
     }
-	public override string ToString() => "$";
+	public override string ToString() => Icons.Data.worldGate.ToString();
 }
 public class Gate
 {
@@ -20,5 +20,5 @@ public class Gate
 	{
 		this.leadsTo = leadsTo;
 	}
-	public override string ToString() => "I";
+	public override string ToString() => Icons.Data.gate.ToString();
 }
