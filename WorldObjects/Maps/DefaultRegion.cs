@@ -11,14 +11,14 @@ public abstract partial class World
 				new (-1, 5),
 				new (-1, -2),
 				new (1, -2),
-			} ) 
+			} )
 			{
 				canLeadTo = new RoomObj<Gate>[]
 				{
 					new RoomObj<Gate>(new(1), 0, -2)
 				},
-				worldGate = new RoomObj<WorldGate>(typeof(Forest), 0, 5)
+				worldGate = new RoomObj<WorldGate>(new WorldGate(typeof(Forest), 0), 0, 5)
 			} },
 		};
 	}
-}
+} 

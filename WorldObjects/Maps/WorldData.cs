@@ -14,10 +14,12 @@ public class Room
 	public RoomObj<StaticObject>[]? objects; // Objects like boxes in the room
 	public RoomObj<WorldGate>? worldGate; // door to another world, if it has one
 	public RoomObj<Gate>[] canLeadTo; // doors to other rooms
-	public Room(AbstractRoomPoint[] roomPoints)
+	public Room(AbstractRoomPoint[] roomPoints, RoomObj<Gate>[] gates)
 	{
 		this.roomPoints = roomPoints;
+		canLeadTo = gates;
 	}
+	
 }
 public struct AbstractRoomPoint
 {
