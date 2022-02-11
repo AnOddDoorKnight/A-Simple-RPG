@@ -5,12 +5,12 @@ public abstract partial class World
 	{
 		public override Room[] Rooms => new Room[]
 		{
-			new Room(new AbstractRoomPoint[]
+			new Room(new Vector2[]
 			{
-				new AbstractRoomPoint(1, 5),
-				new (-1, 5),
-				new (-1, -2),
-				new (1, -2),
+				new Vector2(2, 5),
+				new (0, 5),
+				new (0, 2),
+				new (2, 2),
 			} )
 			{
 				canLeadTo = new RoomObj<Gate>[]
