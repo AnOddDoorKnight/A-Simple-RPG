@@ -6,6 +6,7 @@ using ASimpleRPG.Logging;
 namespace ASimpleRPG;
 public static class Master
 {
+	public static Debug debug = new($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}logs\\", $"{DateTime.Today}.txt");
 	static readonly string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
 	static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
 	public static World WorldInstance { get; private set; } = new World.Hub();
@@ -20,12 +21,16 @@ public static class Master
 			"1 + 1 = 0"
 		};
 		Console.Title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
-		Debug.Log($"Setted Title: {Console.Title}", "Startup");
+		if (OperatingSystem.IsWindows()) debug.Log($"Setted Title: {Console.Title}", Debug.SubCategory.Startup);
+		else debug.LogWarning($"Setted Title: Unable to display title due to operating system", Debug.SubCategory.Startup);
 		DemoControl();
 	}
+	/// <summary>
+	/// Runs a method for testing the game, should not be in the final build
+	/// </summary>
 	private static void DemoControl()
 	{
-		Debug.Log($"Using Demo Control..", "Demo");
+		debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);
 		player = new(new PlayableCharacter(), 0, 0, 0);
 	}
 	static void Main()

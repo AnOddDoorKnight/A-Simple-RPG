@@ -14,6 +14,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Entities\Bosses\" />
-	  <Folder Include="Entities\Humans\Friendly\Vendors\" />
+	  <Folder Include="Entities\Humanoids\Humans\Friendly\Vendors\" />
 	</ItemGroup>
 </Project>

@@ -2,24 +2,36 @@ namespace ASimpleRPG.Logging;
 using System.IO;
 using System;
 using OddsLibrary.IO;
-public static class Debug
+public class Debug
 {
-    static string fileLocation = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Master.sourceFolder}logs\{DateTime.Today}.txt";
-    static Debug()
+    string FileLocation => fileDirectory + fileName;
+    string fileDirectory, fileName;
+    public Debug(string fileLocation, string fileName)
+	{
+        fileDirectory = fileLocation;
+        this.fileName = fileName;
+        new FileManager(FileLocation).BuildFile();
+	}
+    public void Log(string message) => Log(message, isError: false);
+    public void Log(string message, SubCategory subcategory) => Log(message, subcategory, false);
+    public void LogWarning(string message) => Log(message, isError: null);
+    public void LogWarning(string message, SubCategory subcategory) => Log(message, subcategory, null);
+    public void LogError(string message) => Log(message, isError: true);
+    public void LogError(string message, SubCategory subcategory) => Log(message, subcategory, true);
+    private void Log(string message, SubCategory? subcategory = null, bool? isError = false)
     {
-        FileManager manager = new(fileLocation);
-        manager.BuildFile();
+        string currentLog = File.ReadAllText(FileLocation
+            + $"\n[{isError switch { true => "Info", false => "Error", null => "Warning" }}"
+            + $"/{(subcategory != null ? $"/{subcategory}" : "")}] {message}");
+        File.WriteAllLines(FileLocation, currentLog.Split('\n'));
     }
-    public static void Log(string message) => Log(message, isError: false);
-    public static void Log(string message, string subcategory) => log(message, subcategory, false);
-    public static void LogWarning(string message) => Log(message, isError: null);
-    public static void LogWarning(string message, string subcategory) => Log(message, subcategory, null);
-    public static void LogError(string message) => Log(message, isError: true);
-    public static void LogError(string message, string subcategory) => Log(message, subcategory, true);
-    private static void Log(string message, string? subcategory = null, bool? isError = false)
-    {
-        string currentLog = File.ReadAllText(fileLocation);
-        currentLog += $"\n[{isError switch {true => "Info", false => "Error", null => "Warning"}}}{(subcategory != null ? $"/{subcategory}" : "")}] {message}";
-        File.WriteAllLines(fileLocation, currentLog);
-    }
+    public enum SubCategory
+	{
+        Startup,
+        Demo,
+        CreateArea,
+        CreateObject,
+        CreateCreature,
+        Rendering
+	}
 }

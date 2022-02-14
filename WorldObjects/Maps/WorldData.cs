@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ASimpleRPG.Entities;
+/// <summary>
+/// A container for array of <see cref="Room"/>, 
+/// </summary>
 public abstract partial class World
 {	// This is stored as the whole world, or a group of rooms.
 	public List<WorldObj<Entity>> otherEntities = new();
@@ -53,11 +56,14 @@ public class Room
 			outputArray[roomPoint.X, roomPoint.Y] = Icons.Data.wall;
 			// Take the value of both X and get the difference between them
 			// Then, divide it by how many squares there are and round
-			byte[] lengthsBetweenThemPerPoint = new byte[(byte)Math.Round((double)(roomPoint.X - secondRoomPoint.X))];
-			for (int ii = 0; lengthsBetweenThemPerPoint.Length > 0; ii++)
-			{	// 0 will be first, = to is to second
-
+			byte[] lengthsBetweenThemPerPoint = new byte[(byte)Math.Abs(roomPoint.X - secondRoomPoint.X - 2)];
+			for (int ii = 0, j = 1; j < lengthsBetweenThemPerPoint.Length; ii++)
+			{   // 0 will be first, = to is to second
+				lengthsBetweenThemPerPoint[ii] = (byte)Math.Round((double)((roomPoints[ii].X - roomPoints[ii++].X) / lengthsBetweenThemPerPoint.Length) * j);
+				Master.debug.Log(lengthsBetweenThemPerPoint[ii].ToString());
+				j++;
 			}
+
 		}
 		//
 		List<List<Vector2>> blocks = new();
