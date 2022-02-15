@@ -1,32 +1,25 @@
-﻿using System;
+﻿namespace ASimpleRPG;
+using System;
 using ASimpleRPG.WorldData;
 using OddsLibrary.IO;
 using ASimpleRPG.Entities;
-using ASimpleRPG.Logging;
-namespace ASimpleRPG;
+using System.Diagnostics;
+
 public static class Master
 {
-	public static readonly Debug debug = new($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}logs\\", $"{DateTime.Today}.txt");
+	public static readonly Logging.Debug debug = new($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}logs\\", $"{DateTime.Today}.txt");
 	static readonly string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
 	//static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
 	public static World WorldInstance { get; private set; } = new World.Hub();
 	internal static WorldObj<PlayableCharacter> player;
 	static Master()
 	{
-		// https://terraria.fandom.com/wiki/Title_messages
-		string[] yellowText =
-		{	"return splashText[Random.Next(splashText.Length)]",
-			"Your fist is your weapon!",
-			"1 + 1 = 0"
-		};
-		string title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
-		Console.Title = title;
-		debug.Log($"Setted Title: {title}", Debug.SubCategory.Startup);
-		DemoControl();
+		Startup.AssignTitle();
+		if (Debugger.IsAttached) DemoControl();
 	}
 	private static void DemoControl()
 	{
-		debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);
+		debug.LogWarning($"Using Demo Control..", Logging.Debug.SubCategory.Demo);
 		player = new(new PlayableCharacter(), 0, 0, 0);
 	}
 	static void Main()
