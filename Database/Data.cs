@@ -6,5 +6,6 @@ public static partial class Data
 		worldGate = '$',
 		wall = '#',
 		player = 'X',
-		emptySpace = '.';
+		emptySpace = '.',
+		corner = '%';
 }

@@ -5,7 +5,7 @@ using OddsLibrary.IO;
 public class Debug
 {
     string FileLocation => fileDirectory + fileName;
-    string fileDirectory, fileName;
+    internal readonly string fileDirectory, fileName;
     public Debug(string fileLocation, string fileName)
 	{
         fileDirectory = fileLocation;

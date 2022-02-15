@@ -6,12 +6,11 @@ using ASimpleRPG.Logging;
 namespace ASimpleRPG;
 public static class Master
 {
-	public static Debug debug = new($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}logs\\", $"{DateTime.Today}.txt");
+	public static readonly Debug debug = new($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{sourceFolder}logs\\", $"{DateTime.Today}.txt");
 	static readonly string saveName = "Save.sl2", sourceFolder = @"\ASimpleRPG\";
-	static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
+	//static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
 	public static World WorldInstance { get; private set; } = new World.Hub();
 	internal static WorldObj<PlayableCharacter> player;
-	//static World World = new WorldData.Void();
 	static Master()
 	{
 		// https://terraria.fandom.com/wiki/Title_messages
@@ -20,14 +19,11 @@ public static class Master
 			"Your fist is your weapon!",
 			"1 + 1 = 0"
 		};
-		Console.Title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
-		if (OperatingSystem.IsWindows()) debug.Log($"Setted Title: {Console.Title}", Debug.SubCategory.Startup);
-		else debug.LogWarning($"Setted Title: Unable to display title due to operating system", Debug.SubCategory.Startup);
+		string title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
+		Console.Title = title;
+		debug.Log($"Setted Title: {title}", Debug.SubCategory.Startup);
 		DemoControl();
 	}
-	/// <summary>
-	/// Runs a method for testing the game, should not be in the final build
-	/// </summary>
 	private static void DemoControl()
 	{
 		debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);

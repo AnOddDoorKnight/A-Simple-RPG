@@ -23,12 +23,17 @@ public class Room
 		this.roomPoints = roomPoints;
 		canLeadTo = gates;
 	}
-	//public void Update() { }
 	public override string ToString()
 	{
-		// We can specify what chars to replace by providing vector2 coordinates
+		string[] outputArray = ToArray();
 		string output = "";
-		char[,] outputArray;
+		foreach (string i in outputArray)
+			output += $"{i}\n";
+		return output;
+	}
+	public string[] ToArray()
+	{
+		// Finding the highest value here:
 		List<byte> heights = new(), lengths = new();
 		foreach (Vector2 roomPoint in roomPoints)
 		{
@@ -39,50 +44,46 @@ public class Room
 		}
 		heights.Sort();
 		lengths.Sort();
-		byte height = (byte)(heights[^1] - heights[0]), length = (byte)(lengths[0] - lengths[^1]);
-		// We add the chars here
-		outputArray = new char[height, length];
-		for (int i = 0; i < height; i++) 
-			for (int ii = 0; ii < length; ii++) 
+		// The declared variable to return
+		char[,] outputArray = new char[heights[^1], lengths[^1]];
+		// first, we make all chars set to emptySpace
+		for (int i = 0; i < outputArray.GetLength(0); i++)
+			for (int ii = 0; ii < outputArray.GetLength(1); ii++)
 				outputArray[i, ii] = Icons.Data.emptySpace;
-		Vector2[] AdjustedRoomPoints = new Vector2[roomPoints.Length];
+		// Second, we add walls to the vectors themselves; as a corner
+		foreach (Vector2 roomPoint in roomPoints)
+			outputArray[roomPoint.Y, roomPoint.X] = Icons.Data.corner;
+		// Third, we find the lengths between them
 		for (int i = 0; i < roomPoints.Length; i++)
-			AdjustedRoomPoints[i] = new Vector2((byte)(roomPoints[i].X - heights[0]), (byte)(roomPoints[i].Y - heights[0]));
-		// Now, lets take between the two points of vector2s
-		for (int i = 0; i <= roomPoints.Length; i++)
-		{	
-			Vector2 roomPoint = roomPoints[i], 
-				secondRoomPoint = roomPoints[i != roomPoints.Length ? i + 1 : 0];
-			outputArray[roomPoint.X, roomPoint.Y] = Icons.Data.wall;
-			// Take the value of both X and get the difference between them
-			// Then, divide it by how many squares there are and round
-			byte[] lengthsBetweenThemPerPoint = new byte[(byte)Math.Abs(roomPoint.X - secondRoomPoint.X - 2)];
-			for (int ii = 0, j = 1; j < lengthsBetweenThemPerPoint.Length; ii++)
-			{   // 0 will be first, = to is to second
-				lengthsBetweenThemPerPoint[ii] = (byte)Math.Round((double)((roomPoints[ii].X - roomPoints[ii++].X) / lengthsBetweenThemPerPoint.Length) * j);
-				Master.debug.Log(lengthsBetweenThemPerPoint[ii].ToString());
-				j++;
-			}
-
-		}
-		//
-		List<List<Vector2>> blocks = new();
-		for (int i = 0; i < height; i++) blocks.Add(new List<Vector2>());
-		for (int i = 0; i < roomPoints.Length; i++) ;
-
-
-		// Here we actually render it!
-		for (int i = 0; i < heights[^1]; i++)
 		{
-			for (int ii = 0; ii < lengths[^1]; ii++)
-				output += Icons.Data.emptySpace;
-			output += "\n";
-		} 
+			// Take the X and find the length between them
+			// X and X++
+			// Divide it by the amount of squares between them
+			// Round it when done after that
+			Vector2 _1 = roomPoints[i], _2 = roomPoints[i + 1];
+			OddsLibrary.Vector.VectorDynamic 
+				Vect1 = new(new float[] { _1.X, _1.Y }), 
+				Vect2 = new(new float[] { _2.X, _2.Y });
+			int smallLength = Vect1[0] > Vect2[0] ? (int)Vect2[0] : (int)Vect1[0], 
+				smallHeight = (int)Vect2.DistanceBetweenInArray(Vect1)[1],
+				smallest = Vect1[1] > Vect2[1] ? (int)Vect2[1] : (int)Vect1[1];
+			// 0-1 each square/y / (divide it by the size of length
+			for (int ii = 1; ii < smallHeight; ii++)
+			{
+				#warning TODO: Test this!
+				outputArray[ii + smallLength, smallHeight != 0 ? (byte)Math.Round((double)((ii / smallHeight) + smallest)) : smallest] = Icons.Data.wall; // X length here
+			}
+		}
+		// Now, we turn it into a string array!
+		string[] output = new string[outputArray.GetLength(0)];
+		for (int i = 0; i < outputArray.GetLength(0); i++)
+		{
+			output[i] = "";
+			for (int ii = 0; ii <= outputArray.GetLength(1); ii++)
+				output[i] += outputArray[i, ii];
+		}
 		return output;
 	}
-	public string[] ToArray() => ToString().Split('\n');
-	public List<string> ToList() => ToArray().ToList();
-	public HashSet<string> ToHashSet() => ToArray().ToHashSet();
 }
 public struct Vector2
 {
