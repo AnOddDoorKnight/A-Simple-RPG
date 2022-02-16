@@ -7,19 +7,21 @@ public abstract class Weapon : Item
     public DamageType damageType;
     #region Traits
     public bool finesse = false, agile = false;
+    public bool? isOneHanded;
 	private Modifier damageModifier, ACModifier;
 	#endregion
     private Weapon(uint amount) : base(amount)
 	{
         dealDamage = FirstDamage;
     }
-	public Weapon(byte dice, byte sides, Modifier damageModifier, Modifier ACModifier, uint amount) : this(amount)
+	public Weapon(byte dice, byte sides, Modifier damageModifier, Modifier ACModifier, uint amount, bool? isOneHanded) : this(amount)
     {
 		// Finesse should be manually set by { } after creation, hence needing a delegate. Used to remove clutter. 
 		this.damageModifier = damageModifier;
 		this.ACModifier = ACModifier;
         this.sides = sides;
         this.dice = dice;
+        this.isOneHanded = isOneHanded;
     }
 	// Damage Logic
     public delegate Damage DdealDamage();

@@ -1,6 +1,5 @@
 using ASimpleRPG.Entities;
 namespace ASimpleRPG.Items;
-
 public abstract class Armor : Item
 {
     public uint AC;

@@ -2,7 +2,8 @@
 
 public abstract partial class World
 {
-	public class Forest : World
+	static class ass
+	//public class Forest : World
 	{
 		
 	}

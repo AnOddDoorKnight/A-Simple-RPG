@@ -20,11 +20,9 @@ public enum Rarity : sbyte
     Uncommon,
     Rare
 }
-public enum ItemType : byte
+public interface IPurchasable
 {
-    Weapon,
-    Armor,
-    Emblem,
-    Consumable,
-    Junk,
+    float Cost { get; }
+    float Amount { get; }
+    float Bulk => Cost * Amount;
 }

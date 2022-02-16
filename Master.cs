@@ -16,6 +16,12 @@ public static class Master
 	{
 		Startup.AssignTitle();
 		if (Debugger.IsAttached) DemoControl();
+		else
+		{
+			debug.Log("Launching game..", Logging.Debug.SubCategory.Startup)
+			ISaveManager sv = new PlayableCharacter();
+			player = sv.Load<WorldObj<PlayableCharacter>>();
+		}
 	}
 	private static void DemoControl()
 	{
@@ -24,7 +30,6 @@ public static class Master
 	}
 	static void Main()
 	{
-
 	}
 	public static event EventHandler? NewRound;
 	public static void InvokeNewRound() => NewRound?.Invoke(null, EventArgs.Empty);
@@ -37,10 +42,4 @@ public enum Stats
 	Wisdom,
 	Intelligence,
 	Charisma
-}
-// Might not be used, but is here due to updates in personal essentials
-public enum CreatureType
-{
-	Player,
-	Slime
 }

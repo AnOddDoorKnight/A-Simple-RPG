@@ -31,7 +31,7 @@ public class Room
 			output += $"{i}\n";
 		return output;
 	}
-	public string[] ToArray()
+	public char[,] ToCharArray()
 	{
 		// Finding the highest value here:
 		List<byte> heights = new(), lengths = new();
@@ -71,10 +71,15 @@ public class Room
 			for (int ii = 1; ii < smallHeight; ii++)
 			{
 				#warning TODO: Test this!
-				outputArray[ii + smallLength, smallHeight != 0 ? (byte)Math.Round((double)((ii / smallHeight) + smallest)) : smallest] = Icons.Data.wall; // X length here
+				outputArray[ii + smallLength - 1, smallHeight != 0 ? (byte)Math.Round((double)((ii / smallHeight) + smallest)) : smallest] = Icons.Data.wall; // X length here
 			}
 		}
 		// Now, we turn it into a string array!
+		return outputArray;
+	}
+	public string[] ToArray()
+	{
+		char[,] outputArray = ToCharArray();
 		string[] output = new string[outputArray.GetLength(0)];
 		for (int i = 0; i < outputArray.GetLength(0); i++)
 		{
@@ -93,4 +98,5 @@ public struct Vector2
 		this.X = X;
 		this.Y = Y;
 	}
+	public void GetVector() => Console.WriteLine("Haha you got vectored");
 }

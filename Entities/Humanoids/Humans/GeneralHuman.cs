@@ -18,7 +18,10 @@ public class Human : Entity
 		foreach (Stats i in Enum.GetValues(typeof(Stats)))
 			Stats.Add(i,new Stat(10));
     }
-	internal Modifier FindModifierForFists() => Stats[ASimpleRPG.Stats.Strength].Modifier < Stats[ASimpleRPG.Stats.Dexterity].Modifier ? new Modifier(ASimpleRPG.Stats.Dexterity, Stats[ASimpleRPG.Stats.Dexterity].Modifier) : new Modifier(ASimpleRPG.Stats.Strength, Stats[ASimpleRPG.Stats.Strength].Modifier);
+	internal Modifier FindModifierForFists() => 
+		Stats[ASimpleRPG.Stats.Strength].Modifier < Stats[ASimpleRPG.Stats.Dexterity].Modifier ? 
+		new Modifier(ASimpleRPG.Stats.Dexterity, Stats[ASimpleRPG.Stats.Dexterity].Modifier) : 
+		new Modifier(ASimpleRPG.Stats.Strength, Stats[ASimpleRPG.Stats.Strength].Modifier);
 }
 /// <summary>
 ///   <para>
