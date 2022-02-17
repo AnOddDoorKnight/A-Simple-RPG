@@ -5,6 +5,7 @@ public abstract class StaticObject
     public Quality quality;
     public abstract byte Y { get; }
     public abstract byte X { get; }
+    public abstract char Icon { get; }
     public bool Collidable => (int)Quality.Broken <= (int)quality;
     public StaticObject(string name, Quality quality)
     {

@@ -1,16 +1,21 @@
 ﻿namespace ASimpleRPG.Entities;
 using System;
+using System.Collections.Generic;
 /// <summary>
 /// 
 /// </summary>
 public struct Resistances
 {
-    public float this[DamageType type] { get => Values[(int)type]; set => Values[(int)type] = value; }
-    public float[] Values = { 0, 0, 0, 0 };
-    public Resistances()
+    public int this[DamageType type] { get => list[type]; set => list[type] = value; }
+    public Dictionary<DamageType, int> list = new();
+    public Resistances(Dictionary<DamageType, int>? list = null)
     {
-        throw new NotImplementedException();
+        foreach (int i in Enum.GetValues<DamageType>())
+            if (this.list.ContainsKey((DamageType)i) && list != null) 
+                this.list[(DamageType)i] = list[(DamageType)i]; 
+            else 
+                this.list.Add((DamageType)i, i);
     }
     public float GetNewValue(float input, DamageType type) =>
-        type == DamageType.Bludgeoning ? input - Values[3] : input - (input - Values[(int)type]);
+        type == DamageType.Bludgeoning ? input - list[DamageType.Bludgeoning] : input - (input - list[type]);
 }
