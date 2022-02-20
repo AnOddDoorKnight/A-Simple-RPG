@@ -37,7 +37,7 @@ internal static class Startup
 		// https://terraria.fandom.com/wiki/Title_messages
 		string title = $"A-Simple-RPG: {GetSubTitle()}";
 		Console.Title = title;
-		Master.debug.Log($"Setted Title: {title}", Debug.SubCategory.Startup);
+		Debug.Log($"Setted Title: {title}", Debug.SubCategory.Startup);
 		return title;
 	}
 	public static WorldObj<PlayableCharacter> GetSavedCharacter()
@@ -46,12 +46,12 @@ internal static class Startup
 		ISaveManager sv = new PlayableCharacter();
 		try 
 		{
-			Master.debug.Log("Loading saved Character..", Debug.SubCategory.CreateObject);
+			Debug.Log("Loading saved Character..", Debug.SubCategory.CreateObject);
 			player = sv.Load<WorldObj<PlayableCharacter>>(); 
 		}
 		catch (FileNotFoundException) 
 		{
-			Master.debug.LogWarning("Cannot find player data, starting new game..", Debug.SubCategory.CreateObject);
+			Debug.LogWarning("Cannot find player data, starting new game..", Debug.SubCategory.CreateObject);
 			player = new(new PlayableCharacter(), 0, 0, 0); 
 		}
 		return player;

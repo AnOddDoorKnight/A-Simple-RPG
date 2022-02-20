@@ -1,5 +1,6 @@
 namespace ASimpleRPG.WorldData;
 using System;
+using ASimpleRPG.Logging;
 /// <summary>
 /// Like <seealso cref="Gate"/>, but relies on <see cref="World"/> instead of rooms
 /// </summary>
@@ -13,7 +14,7 @@ public class WorldGate
 		if (!world.IsSubclassOf(typeof(World))) throw new ArgumentException("World Gate does not lead to world!");
         this.roomTo = roomTo;
 		this.world = world;
-		Master.debug.Log($"Created worldGate to {world}, room {roomTo}", Logging.Debug.SubCategory.CreateArea);
+		Debug.Log($"Created worldGate to {world}, room {roomTo}", Logging.Debug.SubCategory.CreateArea);
     }
 	public override string ToString() => Icons.Data.worldGate.ToString();
 }
@@ -26,7 +27,7 @@ public class Gate
 	public Gate(byte leadsTo)
 	{
 		this.leadsTo = leadsTo;
-		Master.debug.Log($"Created gate to {leadsTo}", Logging.Debug.SubCategory.CreateArea);
+		Debug.Log($"Created gate to {leadsTo}", Logging.Debug.SubCategory.CreateArea);
 	}
 	public override string ToString() => Icons.Data.gate.ToString();
 }

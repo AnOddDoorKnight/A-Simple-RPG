@@ -4,26 +4,24 @@ using System.IO;
 using ASimpleRPG.WorldData;
 using OddsLibrary.IO;
 using ASimpleRPG.Entities;
-using System.Diagnostics;
+using ASimpleRPG.Logging;
 using ASimpleRPG.FileLocations;
 public static class Master
 {
-	public static readonly Logging.Debug debug = 
-		new($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
-	//static FileManager saveFile = new($@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\ASimpleRPG\{saveName}", true);
 	public static World WorldInstance { get; private set; } = new World.Hub();
 	internal static WorldObj<PlayableCharacter> player;
 	static Master()
 	{
+		Debug.ApplyDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
 		Startup.AssignTitle();
-		if (Debugger.IsAttached)
+		if (System.Diagnostics.Debugger.IsAttached)
 		{
-			debug.LogWarning($"Using Demo Control..", Logging.Debug.SubCategory.Demo);
+			Debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);
 			player = new(new PlayableCharacter(), 0, 0, 0);
 		}
 		else
 		{
-			debug.Log("Launching game..", Logging.Debug.SubCategory.Startup);
+			Debug.Log("Launching game..", Debug.SubCategory.Startup);
 			player = Startup.GetSavedCharacter();
 		}
 	}
