@@ -4,7 +4,7 @@ using ASimpleRPG.Items;
 namespace ASimpleRPG.Entities.Random;
 public static class ItemGenerator
 {
-    private static System.Random Random = new();
+    private static readonly System.Random Random = new();
     public static Weapon Next(ItemType itemType) => itemType switch
     {
         _ => throw new NotImplementedException()

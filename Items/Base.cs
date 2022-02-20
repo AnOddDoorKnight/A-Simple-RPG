@@ -2,7 +2,7 @@ using System;
 namespace ASimpleRPG.Items;
 public abstract class Item
 {
-    protected static Random Random = new();
+    protected static readonly Random Random = new();
     public string? name, description;
     public Rarity rarity = Rarity.Common;
     public uint amount;
