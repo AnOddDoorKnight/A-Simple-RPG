@@ -1,7 +1,6 @@
 ﻿namespace ASimpleRPG.WorldData;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using ASimpleRPG.Entities;
 /// <summary>
 /// A container for array of <see cref="Room"/>, 
@@ -83,9 +82,10 @@ public class Room
 		string[] output = new string[outputArray.GetLength(0)];
 		for (int i = 0; i < outputArray.GetLength(0); i++)
 		{
-			output[i] = "";
+			output[i] = string.Empty;
 			for (int ii = 0; ii <= outputArray.GetLength(1); ii++)
 				output[i] += outputArray[i, ii];
+			output[i] += '\n';
 		}
 		return output;
 	}

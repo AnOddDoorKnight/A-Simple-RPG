@@ -1,23 +1,59 @@
 ﻿namespace ASimpleRPG;
 using System;
+using System.IO;
+using ASimpleRPG.Entities;
+using ASimpleRPG.WorldData;
+using ASimpleRPG.Logging;
 internal static class Startup
 {
-	public static string AssignTitle()
+	private static string GetSubTitle()
 	{
-		// https://minecraft.fandom.com/wiki/Splash
-		// https://terraria.fandom.com/wiki/Title_messages
-		string[] yellowText =
-		{   "\"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]};",
+		string output = "";
+		string?[] yellowText =
+		{
+			null,
 			"Your fist is your weapon!",
 			"1 + 1 = 0",
 			"1 + 1 = 10",
 			"Ultra Greatbows",
 			"Great Crossbows are just portable ballistas",
-			"Point down at the bugs, it will rid of them out of saltiness!",
+			"The Rats Chosen Undead, Why are they invincible?",
+			"Now with 50% more pain!",
+			"Remastered",
+			"Professor of the First Sin",
+			"Pointeth Downward",
 		};
-		string title = $"A-Simple-RPG: {yellowText[new Random().Next(yellowText.Length)]}";
+		Random random = new();
+		while (true)
+		{
+			int i = random.Next(yellowText.Length);
+			if (yellowText[i] == null) output += GetSubTitle();
+			else return output;
+		}
+	}
+	public static string AssignTitle()
+	{
+		// https://minecraft.fandom.com/wiki/Splash
+		// https://terraria.fandom.com/wiki/Title_messages
+		string title = $"A-Simple-RPG: {GetSubTitle()}";
 		Console.Title = title;
-		Master.debug.Log($"Setted Title: {title}", Logging.Debug.SubCategory.Startup);
+		Master.debug.Log($"Setted Title: {title}", Debug.SubCategory.Startup);
 		return title;
+	}
+	public static WorldObj<PlayableCharacter> GetSavedCharacter()
+	{
+		WorldObj<PlayableCharacter> player;
+		ISaveManager sv = new PlayableCharacter();
+		try 
+		{
+			Master.debug.Log("Loading saved Character..", Debug.SubCategory.CreateObject);
+			player = sv.Load<WorldObj<PlayableCharacter>>(); 
+		}
+		catch (FileNotFoundException) 
+		{
+			Master.debug.LogWarning("Cannot find player data, starting new game..", Debug.SubCategory.CreateObject);
+			player = new(new PlayableCharacter(), 0, 0, 0); 
+		}
+		return player;
 	}
 }

@@ -8,7 +8,7 @@ public class RoomObj<T> where T : class
 		Value = worldObj;
 		this.X = X;
 		this.Y = Y;
-		Master.debug.Log($"Object Created in room: ({X}, {Y})", Logging.Debug.SubCategory.CreateArea);
+		Master.debug.Log($"Object Created in room: ({X}, {Y})", Logging.Debug.SubCategory.CreateObject);
 	}
 }
 public class WorldObj<T> : RoomObj<T> where T : class
@@ -18,5 +18,4 @@ public class WorldObj<T> : RoomObj<T> where T : class
 	{
 		this.Room = Room;
 	}
-	public RoomObj<T> GetRoomObj() => this;
 }

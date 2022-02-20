@@ -3,11 +3,11 @@ namespace ASimpleRPG.Items;
 using System;
 public abstract class Armor : Item
 {
-    public uint AC;
+    public int AC;
     public Resistances resistances;
     public StatusEffects statusInfluences;
     public TierArmor tier;
-    public Armor(Resistances resistances, StatusEffects statusInfluences, uint AC) : base(0) 
+    public Armor(Resistances resistances, StatusEffects statusInfluences, int AC) : base(0) 
     {
         this.resistances = resistances;
         this.statusInfluences = statusInfluences;

@@ -3,7 +3,7 @@ using System;
 using ASimpleRPG.Entities;
 public class PeasantClothing : None
 {
-	public PeasantClothing(uint amount) : base(amount) 
+	public PeasantClothing()
 	{
 		tier = TierArmor.Cloth;
 		name = "Peasant's Clothing";
@@ -12,7 +12,7 @@ public class PeasantClothing : None
 }
 public class TravelersClothing : None, IPurchasable
 {
-	public TravelersClothing(uint amount) : base(amount) 
+	public TravelersClothing()
 	{
 		tier = TierArmor.Cloth;
 		statusInfluences = new StatusEffects(10, 12, null);
@@ -22,7 +22,7 @@ public class TravelersClothing : None, IPurchasable
 }
 public class None : Armor
 {
-	public None(uint? amount = null) : base(new Resistances(), new StatusEffects(null, null, null), 0, amount ?? 0) 
+	public None() : base(new Resistances(), new StatusEffects(null, null, null), 0) 
 	{
 		tier = TierArmor.None;
 		rarity = Rarity.Unique;
