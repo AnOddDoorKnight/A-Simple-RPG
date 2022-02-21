@@ -1,4 +1,4 @@
-﻿namespace ASimpleRPG.FileLocations;
+﻿namespace ASimpleRPG.Database;
 public static partial class Data
 {
 	public static readonly string

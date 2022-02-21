@@ -1,7 +1,7 @@
 using ASimpleRPG.Items;
 using System.Collections.Generic;
 using System;
-using OddsLibrary.Algebra;
+using static OddsLibrary.Algebra.Algebra;
 namespace ASimpleRPG.Entities;
 /// <summary>
 /// Base class for humans, inherits <seealso cref="Entity"/>

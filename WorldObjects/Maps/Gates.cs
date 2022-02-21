@@ -1,4 +1,5 @@
 namespace ASimpleRPG.WorldData;
+using static ASimpleRPG.Database.Data;
 using System;
 using ASimpleRPG.Logging;
 /// <summary>
@@ -16,7 +17,7 @@ public class WorldGate
 		this.world = world;
 		Debug.Log($"Created worldGate to {world}, room {roomTo}", Logging.Debug.SubCategory.CreateArea);
     }
-	public override string ToString() => Icons.Data.worldGate.ToString();
+	public override string ToString() => worldGate.ToString();
 }
 /// <summary>
 /// Leads to another area if entered, usually by a <see cref="byte"/> 
@@ -29,5 +30,5 @@ public class Gate
 		this.leadsTo = leadsTo;
 		Debug.Log($"Created gate to {leadsTo}", Logging.Debug.SubCategory.CreateArea);
 	}
-	public override string ToString() => Icons.Data.gate.ToString();
+	public override string ToString() => Database.Data.gate.ToString();
 }

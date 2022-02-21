@@ -1,11 +1,13 @@
-﻿namespace ASimpleRPG;
-using System;
-using System.IO;
+﻿global using static System.Console;
+global using static System.Math;
+global using System;
+global using System.IO;
+namespace ASimpleRPG;
 using ASimpleRPG.WorldData;
 using OddsLibrary.IO;
 using ASimpleRPG.Entities;
 using ASimpleRPG.Logging;
-using ASimpleRPG.FileLocations;
+using ASimpleRPG.Database;
 public static class Master
 {
 	public static World WorldInstance { get; private set; } = new World.Hub();

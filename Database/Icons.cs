@@ -1,4 +1,4 @@
-﻿namespace ASimpleRPG.Icons;
+﻿namespace ASimpleRPG.Database;
 public static partial class Data
 {
 	public static readonly char
