@@ -1,5 +1,6 @@
 ﻿global using static System.Console;
 global using static System.Math;
+global using ASimpleRPG.Vectoring;
 global using System;
 global using System.IO;
 namespace ASimpleRPG;

@@ -28,7 +28,7 @@ public class Gate
 	public Gate(byte leadsTo)
 	{
 		this.leadsTo = leadsTo;
-		Debug.Log($"Created gate to {leadsTo}", Logging.Debug.SubCategory.CreateArea);
+		Debug.Log($"Created gate to {leadsTo}", Debug.SubCategory.CreateArea);
 	}
-	public override string ToString() => Database.Data.gate.ToString();
+	public override string ToString() => gate.ToString();
 }

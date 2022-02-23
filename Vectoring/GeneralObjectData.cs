@@ -1,4 +1,4 @@
-﻿namespace ASimpleRPG.WorldData;
+﻿namespace ASimpleRPG.Vectoring;
 using ASimpleRPG.Logging;
 public class RoomObj<T> where T : class
 {
