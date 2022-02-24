@@ -11,7 +11,7 @@ public abstract class Entity
 	public int AC => baseAC + armorAC + bonusAC;
 	public Entity(HealthData Health, StatusEffects StatusEffects, Resistances resistances)
     {
-        Health.GetOwner = GetThis;
+        Health.GetParentOfHealthData = GetThis;
         this.Health = Health;
         this.StatusEffects = StatusEffects;
         this.resistances = resistances;

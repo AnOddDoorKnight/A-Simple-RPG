@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 using ASimpleRPG.Entities;
-using ASimpleRPG.WorldData;
+using Vectoring;
 using ASimpleRPG.Logging;
 internal static class Startup
 {

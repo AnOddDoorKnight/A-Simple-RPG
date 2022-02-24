@@ -1,26 +1,24 @@
 ﻿global using static System.Console;
 global using static System.Math;
-global using ASimpleRPG.Vectoring;
-global using System;
 global using System.IO;
 namespace ASimpleRPG;
-using ASimpleRPG.WorldData;
+using Vectoring;
+using System;
 using OddsLibrary.IO;
-using ASimpleRPG.Entities;
-using ASimpleRPG.Logging;
-using ASimpleRPG.Database;
+using Logging;
 public static class Master
 {
-	public static World WorldInstance { get; private set; } = new World.Hub();
-	internal static WorldObj<PlayableCharacter> player;
+	public static WorldData.World WorldInstance { get; private set; } = new WorldData.World.Hub();
+	internal static WorldObj<Entities.PlayableCharacter> player;
+	public static CombatHandler? combatHandler;
 	static Master()
 	{
-		Debug.ApplyDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
+		Debug.ApplyDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Database.Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
 		Startup.AssignTitle();
 		if (System.Diagnostics.Debugger.IsAttached)
 		{
 			Debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);
-			player = new(new PlayableCharacter(), 0, 0, 0);
+			player = new(new Entities.PlayableCharacter(), 0, 0, 0);
 		}
 		else
 		{
@@ -32,10 +30,6 @@ public static class Master
 	{
 		
 	}
-	public static event EventHandler? NewRound;
-	public static void InvokeNewRound() => NewRound?.Invoke(null, EventArgs.Empty);
-	public static event EventHandler? DeclareDeath;
-	public static void InvokeDeclareDeath(object? sender) => NewRound?.Invoke(sender, EventArgs.Empty);
 }
 public enum Stats
 {
