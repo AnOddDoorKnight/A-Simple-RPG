@@ -33,10 +33,12 @@ public static class Master
 }
 public enum Stats
 {
+	Vigor,
+	Mind,
+	Endurance,
 	Strength,
 	Dexterity,
-	Constitution,
-	Wisdom,
 	Intelligence,
-	Charisma
+	Faith,
+	Arcane
 }

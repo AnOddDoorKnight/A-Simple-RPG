@@ -2,6 +2,7 @@ namespace ASimpleRPG.Entities;
 using System;
 using OddsLibrary.Algebra;
 using Logging;
+/// <summary>Storage for health</summary>
 public class HealthData
 {
 	private double _health, maxHealth;
@@ -14,7 +15,7 @@ public class HealthData
 			if (IsDead)
 			{
 				// Intentionally left null since its not supposed to do that
-				Debug.Log($"{GetParentOfHealthData().name} has died");
+				Debug.Log($"{GetParentOfHealthData?.Invoke().name} has died");
 				CallDeath();
 			}
 		}
