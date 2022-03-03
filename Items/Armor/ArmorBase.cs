@@ -1,18 +1,27 @@
-using ASimpleRPG.Entities;
 namespace ASimpleRPG.Items;
+
 using System;
+using Entities;
+
+
+/// <summary>
+///	<para>
+/// Armor that is meant to be used for humans. Returns <see cref="AC"/> for
+///	difficulty of hitting someone, resistances to determine the reduction of damage,
+///	difficulty of being affected by status effects like <see cref="DamageType.Poison"/>
+///	and <seealso cref="DamageType.Bleeding"/>, weight of the total armor,
+///	stored as <see cref="Item.Weight"/>, and how slow your character moves by
+///	using <see cref="TileMovementDecrease()"/>.
+///	</para>
+/// </summary>
+/// <seealso cref="ASimpleRPG.Items.Item" />
 public abstract class Armor : Item
 {
-	public int AC;
-	public Resistances resistances;
-	public StatusEffects statusInfluences;
+	public abstract int AC { get; }
+	public abstract Resistances Resistances { get; }
+	public abstract StatusEffects statusInfluences { get; }
 	public TierArmor tier;
-	public Armor(Resistances resistances, StatusEffects statusInfluences, int AC) : base(0) 
-	{
-		this.resistances = resistances;
-		this.statusInfluences = statusInfluences;
-		this.AC = AC;
-	}
+	public Armor() : base(0) { }
 	public int TileMovementDecrease => -1 * tier switch
 	{
 		TierArmor.None => 0,

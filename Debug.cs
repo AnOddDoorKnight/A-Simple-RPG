@@ -1,7 +1,10 @@
 namespace ASimpleRPG.Logging;
+
 using System.IO;
 using System;
 using OddsLibrary.IO;
+
+
 public static class Debug
 {
 	static string FileLocation => fileDirectory + fileName;
@@ -32,11 +35,15 @@ public static class Debug
 		FileName = fileName;
 	}
 	public static void Log(string message) => Log(message, isError: false);
-	public static void Log(string message, SubCategory subcategory) => Log(message, subcategory, false);
+	public static void Log(string message, SubCategory subcategory) => 
+		Log(message, subcategory, false);
 	public static void LogWarning(string message) => Log(message, isError: null);
-	public static void LogWarning(string message, SubCategory subcategory) => Log(message, subcategory, null);
-	public static void LogError(string message) => Log(message, isError: true);
-	public static void LogError(string message, SubCategory subcategory) => Log(message, subcategory, true);
+	public static void LogWarning(string message, SubCategory subcategory) => 
+		Log(message, subcategory, null);
+	public static void LogError(string message) => 
+		Log(message, isError: true);
+	public static void LogError(string message, SubCategory subcategory) =>
+		Log(message, subcategory, true);
 	private static void Log(string message, SubCategory? subcategory = null, bool? isError = false)
 	{
 		if (FileDirectory == null || fileName == null) throw new NullReferenceException();

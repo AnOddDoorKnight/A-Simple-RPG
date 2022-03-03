@@ -1,4 +1,6 @@
 ﻿namespace ASimpleRPG;
+
+
 public interface ISaveManager
 {
 	public string SaveFileLocation { get; }

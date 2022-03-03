@@ -1,10 +1,10 @@
 ﻿namespace ASimpleRPG.Entities;
+
 using System;
 using System.Collections.Generic;
 using OddsLibrary.Algebra;
-/// <summary>
-/// 
-/// </summary>
+
+
 public struct StatusEffects
 {
 #warning TODO: #1 Add a call (Like a property) that calls when curVal is overrun by maxVal

@@ -1,6 +1,9 @@
 ﻿namespace ASimpleRPG.Items;
+
 using System.Collections.Generic;
-using ASimpleRPG.Entities;
+using Entities;
+
+
 public class Padded : Armor
 {
 	static readonly Dictionary<DamageType, int> preset = 
@@ -13,7 +16,7 @@ public class Padded : Armor
 			[DamageType.Bleeding] = 24,
 			[DamageType.Poison] = 20,
 		};
-public Padded() : 
+	public Padded() : 
 		base(new Resistances(preset))
 	{
 

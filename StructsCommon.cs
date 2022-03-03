@@ -1,4 +1,6 @@
 namespace ASimpleRPG;
+
+
 public struct Modifier
 {
     public Stats type;

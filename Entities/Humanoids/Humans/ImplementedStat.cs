@@ -1,7 +1,8 @@
 ﻿namespace ASimpleRPG.Entities;
+
 using OddsLibrary.Algebra;
-using System.Collections.Generic;
-using System;
+
+
 /// <summary>
 ///   <para>
 /// A statistic that stores values for things like <see cref="ASimpleRPG.Modifier" />.
@@ -11,27 +12,38 @@ using System;
 ///   </para>
 /// </summary>
 /// <seealso cref="Modifier" />
-public abstract class Stat<T> where T : struct
+public abstract class BaseStat
+{
+
+}
+public abstract class ImplementedStat<T> where T : struct
 {
 	public const byte hardCap = 99;
 	private byte _value;
 	public byte Value { get => _value; set => _value = checked((byte)Algebra.LimitValue(value, 0, hardCap)); }
-	public Stat(byte Value)
+	public ImplementedStat(byte Value)
 	{
 		this.Value = Value;
 	}
 	public abstract T GetCalculatedValue();
-	public Stat[] GetAll(byte vigor, byte mind, byte endurance, byte strength, byte dexterity, byte intelligence, byte faith, byte arcane)
+	public ImplementedStat<object>[] GetAll(byte vigor, byte mind, byte endurance,
+		byte strength, byte dexterity, byte intelligence, byte faith, byte arcane)
 	{
-		return new Stat[] { new Vigor(vigor), new Mind(mind), new Endurance(endurance), new }
+		return new ImplementedStat<object>[] { new Vigor(vigor), new Mind(mind), new Endurance(endurance), new }
 	}
 }
-public sealed class Vigor : Stat<int>
+
+
+
+public sealed class Vigor : ImplementedStat<int>
 {
 	public Vigor(byte Value) : base(Value) { }
 	public override int GetCalculatedValue()
 	{
-		const int buffedCap = 21, standardCap = 36, softCapCap = 72, buffed = 47, standard = 34, softCap = 14, hardCap = 4;
+		// These are the caps of the values that are implemented with
+		const int buffedCap = 21, standardCap = 36, softCapCap = 72, 
+		// The actual values that are multiplied with
+			buffed = 47, standard = 34, softCap = 14, hardCap = 4;
 		int output = 13;
 		for (int i = 0; i <= Value; i++)
 			output = output + 
@@ -42,7 +54,7 @@ public sealed class Vigor : Stat<int>
 		return output;
 	}
 }
-public sealed class Mind : Stat<int>
+public sealed class Mind : ImplementedStat<int>
 {
 	public Mind(byte Value) : base(Value) { }
 	public override int GetCalculatedValue()
@@ -53,7 +65,7 @@ public sealed class Mind : Stat<int>
 		return output;
 	}
 }
-public sealed class Endurance : Stat<EndurancePackage>
+public sealed class Endurance : ImplementedStat<EndurancePackage>
 {
 	public Endurance(byte Value) : base(Value) { }
 	public override EndurancePackage GetCalculatedValue()
@@ -72,23 +84,23 @@ public struct EndurancePackage
 {
 	public int endurance; public float equipLoad;
 }
-public sealed class Strength : Stat<int>
+public sealed class Strength : ImplementedStat<int>
 {
 	
 }
-public sealed class Dexterity : Stat<int>
+public sealed class Dexterity : ImplementedStat<int>
 {
 
 }
-public sealed class Intelligence : Stat<int>
+public sealed class Intelligence : ImplementedStat<int>
 {
 
 }
-public sealed class Faith : Stat<int>
+public sealed class Faith : ImplementedStat<int>
 {
 
 }
-public sealed class Arcane : Stat<ArcanePackage>
+public sealed class Arcane : ImplementedStat<ArcanePackage>
 {
 
 }

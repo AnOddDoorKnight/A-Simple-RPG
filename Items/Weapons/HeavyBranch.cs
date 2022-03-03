@@ -1,4 +1,6 @@
 namespace ASimpleRPG.Items;
+
+
 public sealed class HeavyBranch : Weapon
 {
 	public HeavyBranch(Modifier generalModifier, uint amount) : base(1, 6, generalModifier, generalModifier, amount, null)

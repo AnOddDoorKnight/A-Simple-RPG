@@ -1,4 +1,6 @@
 namespace ASimpleRPG.Items.Spells;
+
+
 public abstract class Spell
 {
 	public uint FPCost;

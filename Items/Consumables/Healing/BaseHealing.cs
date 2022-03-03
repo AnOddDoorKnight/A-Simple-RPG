@@ -1,4 +1,6 @@
 ﻿namespace ASimpleRPG.Items;
+
+
 public abstract class HealingItem : Consumable
 {
 	public HealingItem(DelHealAmount healAmount, uint amount) : base(amount)

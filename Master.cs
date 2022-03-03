@@ -1,11 +1,11 @@
-﻿global using static System.Console;
-global using static System.Math;
-global using System.IO;
-namespace ASimpleRPG;
+﻿namespace ASimpleRPG;
+
 using Vectoring;
 using System;
 using OddsLibrary.IO;
 using Logging;
+
+
 public static class Master
 {
 	public static WorldData.World WorldInstance { get; private set; } = new WorldData.World.Hub();

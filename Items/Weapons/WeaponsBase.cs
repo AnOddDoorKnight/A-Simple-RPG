@@ -1,6 +1,9 @@
+namespace ASimpleRPG.Items;
+
 using ASimpleRPG.Entities;
 using System;
-namespace ASimpleRPG.Items;
+
+
 public abstract class Weapon : Item
 {
 	public int @base = -69, dice, sides, baseAC = -420;

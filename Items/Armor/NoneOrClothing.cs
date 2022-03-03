@@ -1,6 +1,8 @@
 ﻿namespace ASimpleRPG.Items;
 using System;
-using ASimpleRPG.Entities;
+using Entities;
+
+
 public class PeasantClothing : None
 {
 	public PeasantClothing()
@@ -10,6 +12,8 @@ public class PeasantClothing : None
 		statusInfluences = new StatusEffects(10, 10, null);
 	}
 }
+
+
 public class TravelersClothing : None, IPurchasable
 {
 	public TravelersClothing()
@@ -20,6 +24,8 @@ public class TravelersClothing : None, IPurchasable
 	public float Cost => 50;
 	public float Amount => amount;
 }
+
+
 public class None : Armor
 {
 	public None() : base(new Resistances(), new StatusEffects(null, null, null), 0) 

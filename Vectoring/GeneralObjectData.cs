@@ -1,5 +1,8 @@
 ﻿namespace ASimpleRPG.Vectoring;
-using ASimpleRPG.Logging;
+
+using Logging;
+
+
 public class RoomObj<T> where T : class
 {
 	public T Value;
@@ -12,6 +15,8 @@ public class RoomObj<T> where T : class
 		Debug.Log($"Object Created in room: ({X}, {Y})", Logging.Debug.SubCategory.CreateObject);
 	}
 }
+
+
 public class WorldObj<T> : RoomObj<T> where T : class
 {
 	public byte Room;

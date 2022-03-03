@@ -1,4 +1,6 @@
 namespace ASimpleRPG.Items;
+
+
 public sealed class SavingGrace : Weapon, IPurchasable
 {
 	public SavingGrace(Modifier generalModifier, uint amount) : base(1, 12, generalModifier, generalModifier, amount, false)

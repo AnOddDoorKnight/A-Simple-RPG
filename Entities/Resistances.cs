@@ -1,9 +1,9 @@
 ﻿namespace ASimpleRPG.Entities;
+
 using System;
 using System.Collections.Generic;
-/// <summary>
-/// 
-/// </summary>
+
+
 public struct Resistances
 {
 	public int this[DamageType type] { get => list[type]; set => list[type] = value; }

@@ -1,4 +1,8 @@
 ﻿namespace ASimpleRPG.WorldData;
+
+using Vectoring;
+
+
 public abstract partial class World
 {
 	public class Hub : World

@@ -1,10 +1,11 @@
 namespace ASimpleRPG.WorldData;
-using static ASimpleRPG.Database.Data;
+
+using Database;
 using System;
-using ASimpleRPG.Logging;
-/// <summary>
-/// Like <seealso cref="Gate"/>, but relies on <see cref="World"/> instead of rooms
-/// </summary>
+using Logging;
+
+
+/// <summary>Like <seealso cref="Gate"/>, but relies on <see cref="World"/> instead of rooms</summary>
 public class WorldGate
 {
 	public Type world;
@@ -17,11 +18,11 @@ public class WorldGate
 		this.world = world;
 		Debug.Log($"Created worldGate to {world}, room {roomTo}", Logging.Debug.SubCategory.CreateArea);
     }
-	public override string ToString() => worldGate.ToString();
+	public override string ToString() => Data.worldGate.ToString();
 }
-/// <summary>
-/// Leads to another area if entered, usually by a <see cref="byte"/> 
-/// </summary>
+
+
+/// <summary>Leads to another area if entered, usually by a <see cref="byte"/></summary>
 public class Gate
 {
 	public byte leadsTo;
@@ -30,5 +31,5 @@ public class Gate
 		this.leadsTo = leadsTo;
 		Debug.Log($"Created gate to {leadsTo}", Debug.SubCategory.CreateArea);
 	}
-	public override string ToString() => gate.ToString();
+	public override string ToString() => Data.gate.ToString();
 }

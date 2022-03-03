@@ -1,4 +1,6 @@
 namespace ASimpleRPG.WorldData;
+
+
 public abstract class StaticObject
 {
 	public string name;

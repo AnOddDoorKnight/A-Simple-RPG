@@ -1,5 +1,8 @@
 ﻿namespace ASimpleRPG;
-using ASimpleRPG.WorldData;
+
+using Vectoring;
+
+
 public struct AreaOfEffect
 {
 	public Damage damage;

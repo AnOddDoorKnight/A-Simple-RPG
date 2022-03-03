@@ -1,4 +1,6 @@
 ﻿namespace ASimpleRPG.WorldData;
+
+
 public class Crate : StaticObject
 {
 	public override byte X => 1;

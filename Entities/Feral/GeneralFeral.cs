@@ -1,4 +1,6 @@
 namespace ASimpleRPG.Entities;
+
+
 public abstract class Feral : Entity
 {
 	protected readonly static System.Random Random = new();

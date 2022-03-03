@@ -1,4 +1,6 @@
 ﻿namespace ASimpleRPG.Items;
+
+
 public class Flask : HealingItem
 {
 	static readonly uint defaultFlaskSize = 3;

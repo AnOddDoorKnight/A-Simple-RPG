@@ -1,7 +1,10 @@
+namespace ASimpleRPG.Entities.Random;
+
 using System;
 using System.Collections.Generic;
-using ASimpleRPG.Items;
-namespace ASimpleRPG.Entities.Random;
+using Items;
+
+
 public static class ItemGenerator
 {
 	private static readonly System.Random Random = new();

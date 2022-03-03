@@ -1,4 +1,6 @@
 ﻿namespace ASimpleRPG.Items;
+
+
 public class Firebomb : Consumable
 {
 	public override uint MaxUses { get; set; } = 99;
@@ -7,6 +9,8 @@ public class Firebomb : Consumable
 
 	}
 }
+
+
 public class BlackFirebomb : Firebomb
 {
 	public BlackFirebomb(uint amount) : base(amount)

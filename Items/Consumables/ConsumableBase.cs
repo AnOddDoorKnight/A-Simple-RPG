@@ -1,5 +1,7 @@
 namespace ASimpleRPG.Items;
 using OddsLibrary.Algebra;
+
+
 public abstract class Consumable : Item
 {
 	public abstract uint MaxUses { get; set; }

@@ -1,7 +1,10 @@
 namespace ASimpleRPG.Entities;
+
 using System;
 using OddsLibrary.Algebra;
 using Logging;
+
+
 /// <summary>Storage for health</summary>
 public class HealthData
 {

@@ -1,16 +1,20 @@
 ﻿namespace ASimpleRPG.WorldData;
-using static Database.Data;
+
+using Database;
 using System;
 using System.Collections.Generic;
-using ASimpleRPG.Entities;
-/// <summary>
-/// A container for array of <see cref="Room"/>, 
-/// </summary>
+using Entities;
+using Vectoring;
+
+
+/// <summary>A container for array of <see cref="Room"/></summary>
 public abstract partial class World
 {	// This is stored as the whole world, or a group of rooms.
 	public List<WorldObj<Entity>> otherEntities = new();
 	public abstract Room[] Rooms { get; }
 }
+
+
 public class Room
 {
 	public Vector2[] roomPoints; // Parameters of the room
@@ -49,10 +53,10 @@ public class Room
 		// first, we make all chars set to emptySpace
 		for (int i = 0; i < outputArray.GetLength(0); i++)
 			for (int ii = 0; ii < outputArray.GetLength(1); ii++)
-				outputArray[i, ii] = emptySpace;
+				outputArray[i, ii] = Data.emptySpace;
 		// Second, we add walls to the vectors themselves; as a corner
 		foreach (Vector2 roomPoint in roomPoints)
-			outputArray[roomPoint.Y, roomPoint.X] = corner;
+			outputArray[roomPoint.Y, roomPoint.X] = Data.corner;
 		// Third, we find the lengths between them
 		for (int i = 0; i < roomPoints.Length; i++)
 		{
@@ -71,7 +75,7 @@ public class Room
 			for (int ii = 1; ii < smallHeight; ii++)
 			{
 				#warning TODO: Test this!
-				outputArray[ii + smallLength - 1, smallHeight != 0 ? (byte)Round((double)((ii / smallHeight) + smallest)) : smallest] = wall; // X length here
+				outputArray[ii + smallLength - 1, smallHeight != 0 ? (byte)Math.Round((double)((ii / smallHeight) + smallest)) : smallest] = Data.wall; // X length here
 			}
 		}
 		// Now, we turn it into a string array!

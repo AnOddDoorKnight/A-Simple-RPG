@@ -1,8 +1,11 @@
 ﻿namespace ASimpleRPG;
+
 using Logging;
 using System.Linq;
 using Entities;
 using System;
+
+
 public sealed class CombatHandler
 {
 	ConditionManager<Entity>?[] entities;

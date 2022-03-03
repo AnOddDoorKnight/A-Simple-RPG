@@ -1,4 +1,6 @@
 namespace ASimpleRPG.Entities;
+
+
 public abstract class Entity
 {
 	public string? name;

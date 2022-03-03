@@ -1,4 +1,6 @@
 namespace ASimpleRPG.Items;
+
+
 public sealed class Fists : Weapon
 {
 	public Fists(Modifier damageModifier, Modifier ACModifier) : base(1, 4, damageModifier, ACModifier, 0, true)

@@ -1,4 +1,6 @@
 namespace ASimpleRPG;
+
+
 public struct Damage
 {
 	public int value, AC;
