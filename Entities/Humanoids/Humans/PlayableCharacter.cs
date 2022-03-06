@@ -1,9 +1,13 @@
 ﻿namespace ASimpleRPG.Entities;
 using ASimpleRPG.WorldData;
 using System;
-public class PlayableCharacter : Human, ISaveManager
+public class PlayableCharacter : Human
 {
-
+	public override string? Name => playerName;
+	private string playerName;
+	public override HealthData Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+	public override StatusEffects StatusEffects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+	public override Resistances Resistances { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 	public PlayableCharacter()
 	{
@@ -11,15 +15,4 @@ public class PlayableCharacter : Human, ISaveManager
 	}
 
 	public string SaveFileLocation => "";
-	public T Load<T>()
-	{
-		if (typeof(T) != typeof(WorldObj<PlayableCharacter>)) 
-			throw new ArgumentException($"{nameof(T)} is not a valid type for loading! use {nameof(PlayableCharacter)}");
-
-		throw new NotImplementedException();
-	}
-	public void Save<T>(T inheritedClass)
-	{
-		throw new NotImplementedException();
-	}
 }

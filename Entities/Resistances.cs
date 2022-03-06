@@ -16,6 +16,29 @@ public struct Resistances
 			else 
 				this.list.Add((DamageType)i, i);
 	}
-	public float GetNewValue(float input, DamageType type) =>
-		type == DamageType.Bludgeoning ? input - list[DamageType.Bludgeoning] : input - (input - list[type]);
+	public float GetNewValue(float input, DamageType type) => 
+		GetDamageCategory(type) switch
+		{
+			DamageCategory.Standard => input - (input - list[type]),
+			DamageCategory.Bludgeoning => input - list[type],
+			DamageCategory.StatusEffect => input - list[type], // This should be different
+			_ => throw new ArgumentOutOfRangeException(nameof(type)),
+		};
+
+	public static DamageCategory GetDamageCategory(DamageType type) => type switch
+	{   // Bludgeoning
+		DamageType.Bludgeoning => DamageCategory.Bludgeoning,
+		// Status Effects
+		DamageType.Bleeding => DamageCategory.StatusEffect,
+		DamageType.Cursed => DamageCategory.StatusEffect,
+		DamageType.Poison => DamageCategory.StatusEffect,
+		// Default
+		_ => Entities.DamageCategory.Standard
+	};
+}
+public enum DamageCategory
+{
+	Standard,
+	Bludgeoning,
+	StatusEffect
 }

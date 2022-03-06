@@ -3,91 +3,78 @@
 using OddsLibrary.Algebra;
 
 
-/// <summary>
-///   <para>
-/// A statistic that stores values for things like <see cref="ASimpleRPG.Modifier" />.
-/// </para>
-///   <para>
-///     <font color="#333333">Not to be confused with <see cref="Modifier" /></font>
-///   </para>
-/// </summary>
-/// <seealso cref="Modifier" />
-public abstract class BaseStat
-{
-
-}
-public abstract class ImplementedStat<T> where T : struct
+public class Stat
 {
 	public const byte hardCap = 99;
 	private byte _value;
-	public byte Value { get => _value; set => _value = checked((byte)Algebra.LimitValue(value, 0, hardCap)); }
-	public ImplementedStat(byte Value)
+	public byte Value 
 	{
-		this.Value = Value;
+		get => _value; 
+		set => _value = checked((byte)Algebra.LimitValue(value, 0, hardCap)); 
 	}
-	public abstract T GetCalculatedValue();
-	public ImplementedStat<object>[] GetAll(byte vigor, byte mind, byte endurance,
-		byte strength, byte dexterity, byte intelligence, byte faith, byte arcane)
-	{
-		return new ImplementedStat<object>[] { new Vigor(vigor), new Mind(mind), new Endurance(endurance), new }
-	}
-}
-
-
-
-public sealed class Vigor : ImplementedStat<int>
-{
-	public Vigor(byte Value) : base(Value) { }
-	public override int GetCalculatedValue()
+	public Stat(byte value) => Value = value;
+	public virtual int AsVigor()
 	{
 		// These are the caps of the values that are implemented with
-		const int buffedCap = 21, standardCap = 36, softCapCap = 72, 
+		const int buffedCap = 21, standardCap = 36, softCapCap = 72,
 		// The actual values that are multiplied with
 			buffed = 47, standard = 34, softCap = 14, hardCap = 4;
 		int output = 13;
 		for (int i = 0; i <= Value; i++)
-			output = output + 
-				i <= buffedCap ? buffed : 
-				i <= standardCap ? standard : 
-				i <= softCapCap ? softCap : 
+			output = output +
+				i <= buffedCap ? buffed :
+				i <= standardCap ? standard :
+				i <= softCapCap ? softCap :
 				hardCap;
 		return output;
 	}
-}
-public sealed class Mind : ImplementedStat<int>
-{
-	public Mind(byte Value) : base(Value) { }
-	public override int GetCalculatedValue()
+	public virtual int AsMind() => 1 + (7 * Value);
+	public virtual (int stamina, float equipLoad) AsEndurance()
 	{
-		int output = 1;
-		for (int i = 0; output <= Value; i++)
-			output += 7;
-		return output;
+		// The amount of breakpoints that lowers the effectiveness of stats
+		const int staminaCap = 29, equipLoadCap = 30,
+			// the actual values used for stamina
+			staminaCapAffect = 2, staminaNormal = 4;
+		// The Actual values used for equipLoad
+		const float equipLoadNormal = 1.5f, equipLoadCapped = 1.0f;
+
+		// Defining Values
+		int stamina = 84;
+		float equipLoad = 30.0f;
+		
+		// Assigning Stamina
+		for (int i = 0; i <= Value; i++)
+			stamina = stamina +
+				i <= staminaCap ? staminaNormal :
+				staminaCapAffect;
+		// Assigning EquipLoad
+		for (int i = 0; i <= Value; i++)
+			equipLoad = equipLoad + 
+				i <= equipLoadCap ? equipLoadNormal :
+				equipLoadCapped;
+
+		return (stamina, equipLoad);
 	}
-}
-public sealed class Endurance : ImplementedStat<EndurancePackage>
-{
-	public Endurance(byte Value) : base(Value) { }
-	public override EndurancePackage GetCalculatedValue()
+	public virtual (int strengthPower, float equipLoad) AsStrength()
 	{
-		EndurancePackage package = new() { endurance = 102, equipLoad = 40.0f };
-		const int buffedCap = 32;
-		for (int i = 0; i <= buffedCap; i++)
-		{
-			package.equipLoad += buffedCap <= i ? 1.0f : ;
-			package.endurance += buffedCap <= i ? 4 : ;
-		}
-		return package;
+		const int strengthCap = 60,
+			strengthNormal = 3, strengthCapped = 1;
+		const float equipLoadCap = 40;
+
+		int strengthPower = 0;
+		float equipLoad = 0;
+
+		for (int i = 0; i <= Value; i++)
+			equipLoad += i <= equipLoadCap ? 0.5f : 0;
+		for (int i = 0; i <= Value; i++)
+			strengthPower += i <= strengthCap ? strengthNormal : strengthCapped;
+
+		return (strengthPower, equipLoad);
 	}
+
+
 }
-public struct EndurancePackage
-{
-	public int endurance; public float equipLoad;
-}
-public sealed class Strength : ImplementedStat<int>
-{
-	
-}
+/*
 public sealed class Dexterity : ImplementedStat<int>
 {
 
@@ -108,3 +95,4 @@ public struct ArcanePackage
 {
 
 }
+*/

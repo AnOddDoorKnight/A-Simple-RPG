@@ -6,7 +6,7 @@ using System;
 
 
 /// <summary>Base class for humans, inherits <seealso cref="Entity"/></summary>
-public class Human : Entity
+public abstract class Human : Entity
 {
 	private Weapon? _weapon = null;
 	/// <summary>
@@ -15,7 +15,8 @@ public class Human : Entity
 	/// </summary>
 	public Weapon EquippedWeapon 
 	{ 
-		get => _weapon ?? new Fists(FindModifierForFists(), FindModifierForFists()); 
+		get => _weapon ?? 
+			new Fists(FindModifierForFists(), FindModifierForFists()); 
 		set => _weapon = value; 
 	}
 	private Armor armor = new None();
@@ -32,15 +33,15 @@ public class Human : Entity
 			armorAC += value.AC - oldArmor.AC;
 		} 
 	}
-	public Dictionary<Stats, ImplementedStat> Stats = new();
+	public Dictionary<Stats, Stat> Stats = new();
     public Human(HealthData? healthData, StatusEffects? statusEffects, Resistances? resistances) 
 	: base(healthData ?? new HealthData(15), statusEffects ?? new StatusEffects(100, 100, 100), resistances ?? new Resistances())
     {
 		foreach (Stats i in Enum.GetValues(typeof(Stats)))
-			Stats.Add(i,new ImplementedStat(10));
+			Stats.Add(i,new Stat(10));
     }
 	internal Modifier FindModifierForFists() => 
-		Stats[ASimpleRPG.Stats.Strength].Modifier < Stats[ASimpleRPG.Stats.Dexterity].Modifier ? 
+		Stats[ASimpleRPG.Stats.Strength].AsStrength() < Stats[ASimpleRPG.Stats.Dexterity].AsDexterity() ? 
 		new Modifier(ASimpleRPG.Stats.Dexterity, Stats[ASimpleRPG.Stats.Dexterity].Modifier) : 
 		new Modifier(ASimpleRPG.Stats.Strength, Stats[ASimpleRPG.Stats.Strength].Modifier);
 }
