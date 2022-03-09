@@ -9,5 +9,6 @@ public static partial class Data
 		wall = '#',
 		player = 'X',
 		emptySpace = '.',
-		corner = '%';
+		corner = '%',
+		special = '*';
 }

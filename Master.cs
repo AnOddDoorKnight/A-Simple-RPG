@@ -13,32 +13,39 @@ public static class Master
 	public static CombatHandler? combatHandler;
 	static Master()
 	{
-		Debug.ApplyDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Database.Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
-		Startup.AssignTitle();
-		if (System.Diagnostics.Debugger.IsAttached)
+		try
 		{
-			Debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);
-			player = new(new Entities.PlayableCharacter(), 0, 0, 0);
+			Debug.ApplyDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Database.Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
+			Startup.AssignTitle();
+			if (System.Diagnostics.Debugger.IsAttached)
+			{
+				Debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);
+				player = new(new Entities.PlayableCharacter("Player"), 0, 0, 0);
+			}
+			else
+			{
+				Debug.Log("Launching game..", Debug.SubCategory.Startup);
+				player = Startup.GetSavedCharacter();
+			}
+
 		}
-		else
+		catch (Exception ex)
 		{
-			Debug.Log("Launching game..", Debug.SubCategory.Startup);
-			player = Startup.GetSavedCharacter();
+			Debug.LogError($"Startup Attempt Terminated with code error: {ex}", 
+				Debug.SubCategory.Startup);
+			throw;
 		}
 	}
 	static void Main()
 	{
-		
+		try
+		{
+
+		}
+		catch (Exception ex)
+		{
+			Debug.LogError($"Fatal Error: {ex}");
+			throw;
+		}
 	}
-}
-public enum Stats
-{
-	Vigor,
-	Mind,
-	Endurance,
-	Strength,
-	Dexterity,
-	Intelligence,
-	Faith,
-	Arcane
 }

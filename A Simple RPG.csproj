@@ -8,12 +8,19 @@
 		<Nullable>enable</Nullable>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<Authors>AnOddDoorKnight</Authors>
+		<StartupObject>ASimpleRPG.Master</StartupObject>
+		<PackageTags>Game; RPG; </PackageTags>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Entities\Bosses\**" />
+	  <EmbeddedResource Remove="Entities\Bosses\**" />
+	  <None Remove="Entities\Bosses\**" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="PersonalEssentials" Version="1.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Entities\Bosses\" />
 	  <Folder Include="Entities\Humanoids\Humans\Friendly\Vendors\" />
 	</ItemGroup>
 </Project>
