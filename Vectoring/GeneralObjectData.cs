@@ -3,6 +3,7 @@
 using Logging;
 
 
+
 public class RoomObj<T> where T : class
 {
 	public T Value;
@@ -12,8 +13,10 @@ public class RoomObj<T> where T : class
 		Value = worldObj;
 		this.X = X;
 		this.Y = Y;
-		Debug.Log($"Object Created in room: ({X}, {Y})", Logging.Debug.SubCategory.CreateObject);
+		Debug.Log($"Object Created in room: ({X}, {Y})", 
+			Debug.SubCategory.CreateObject);
 	}
+	public Vector2 ToVector2() => new(X, Y);
 }
 
 

@@ -59,6 +59,8 @@ public static class Debug
 		CreateArea,
 		CreateObject,
 		CreateCreature,
+		CreateEvent,
+		CreateAction,
 		Rendering
 	}
 }
