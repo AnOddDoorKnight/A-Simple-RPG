@@ -15,12 +15,7 @@ public abstract class Item
 	public abstract string? Name { get; }
 	public abstract string? Description { get; }
 	public virtual Rarity Rarity => Rarity.Common;
-	public uint amount;
 	public abstract float? Weight { get; }
-	public Item(uint amount)
-	{
-		this.amount = amount;
-	}
 	public override string ToString() => $"{Name}\n{Description}";
 }
 public enum Rarity : sbyte

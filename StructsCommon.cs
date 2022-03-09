@@ -1,11 +1,11 @@
 namespace ASimpleRPG;
 
 
-public struct Modifier
+public struct StatDataPackage
 {
     public Stats type;
     public sbyte calculatedModifier;
-    public Modifier(Stats type, sbyte calculatedModifier)
+    public StatDataPackage(Stats type, sbyte calculatedModifier)
 	{
         this.type = type;
         this.calculatedModifier = calculatedModifier;

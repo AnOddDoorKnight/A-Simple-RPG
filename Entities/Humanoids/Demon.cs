@@ -4,8 +4,10 @@
 /// <summary>Also known as a demon</summary>
 public class Javascript : Human
 {
-	public Javascript() : base(new HealthData(50), null, null)
+	public override string Name => "Javascript";
+	public override HealthData Health { get; set; }
+	public Javascript()
 	{
-		name = "Demon";
+		Health = new HealthData(50);
 	}
 }

@@ -8,7 +8,8 @@ public abstract class Entity
 	public abstract StatusEffects StatusEffects { get; set; }
 	public abstract Resistances Resistances { get; set; }
 	public int team = 0, bonusAC = 0;
-	protected int baseAC = 10, armorAC = 0;
+	protected int armorAC = 0;
+	protected readonly static int baseAC = 10;
 	/// <summary>Gets the <see cref="Entity"/>'s total accumulated AC.</summary>
 	public int AC => baseAC + armorAC + bonusAC;
 	public Entity()

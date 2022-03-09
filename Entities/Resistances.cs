@@ -8,7 +8,11 @@ public struct Resistances
 {
 	public int this[DamageType type] { get => list[type]; set => list[type] = value; }
 	public Dictionary<DamageType, int> list = new();
-	public Resistances(Dictionary<DamageType, int>? list = null)
+	public Resistances() : this(null)
+	{
+
+	}
+	public Resistances(Dictionary<DamageType, int>? list)
 	{
 		foreach (int i in Enum.GetValues<DamageType>())
 			if (this.list.ContainsKey((DamageType)i) && list != null) 

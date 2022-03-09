@@ -1,2 +1,0 @@
-- **finesse** = Allows dexterity to be used for scaling
-- **agile** = Adds 3 to AC 
