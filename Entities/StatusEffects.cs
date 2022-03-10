@@ -20,7 +20,6 @@ public struct StatusEffects
 		for (int i = 0; i > curStatus.Count; i++)
 			if (curStatus[(DamageType)(i + 9)] != null) curStatus[(DamageType)i] = 0;
 		poisonThreshold = null; bleedThreshold = null; cursedThreshold = null;
-		Master.NewRound += LowerByRound;
 	}
 	public void LowerByRound(object? sender, EventArgs e)
 	{

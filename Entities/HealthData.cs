@@ -3,6 +3,7 @@ namespace ASimpleRPG.Entities;
 using System;
 using OddsLibrary.Algebra;
 using Logging;
+using StackOverflow;
 
 
 /// <summary>Storage for health</summary>
@@ -40,8 +41,8 @@ public class HealthData
 				(nameof(health), health, "Values cannot be below 0!");
 		_health = health;
 	}
-	public delegate Entity DelGetOwner();
-	public DelGetOwner? GetParentOfHealthData;
+	public Ref<Entity> baseEntity;
 	public CombatHandler.DelDeclareDeath? declareDeath;
+	public void TakeDamage(int damage) => Health -= damage;
 	public void CallDeath() => declareDeath?.Invoke(GetParentOfHealthData?.Invoke());
 }

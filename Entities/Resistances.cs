@@ -20,7 +20,7 @@ public struct Resistances
 			else 
 				this.list.Add((DamageType)i, i);
 	}
-	public float GetNewValue(float input, DamageType type) => 
+	public int GetNewValue(int input, DamageType type) => 
 		GetDamageCategory(type) switch
 		{
 			DamageCategory.Standard => input - (input - list[type]),

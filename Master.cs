@@ -4,23 +4,27 @@ using Vectoring;
 using System;
 using OddsLibrary.IO;
 using Logging;
+using Entities;
 
 
 public static class Master
 {
-	public static WorldData.World WorldInstance { get; private set; } = new WorldData.World.Hub();
-	internal static WorldObj<Entities.PlayableCharacter> player;
-	public static CombatHandler? combatHandler;
+	public static WorldData.World WorldInstance { get; private set; } 
+		= new WorldData.World.Hub();
+	internal static WorldObj<PlayableCharacter> player;
+	public static CombatHandler? CombatHandler { get; set; } = null;
 	static Master()
 	{
+		Debug.ApplyDirectory
+		($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}" +
+		$"{Database.Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
 		try
 		{
-			Debug.ApplyDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Database.Data.sourceFolder}logs\\", $"{DateTime.Today}.txt");
-			Startup.AssignTitle();
+			Startup.AssignTitle("A-Simple-RPG");
 			if (System.Diagnostics.Debugger.IsAttached)
 			{
 				Debug.LogWarning($"Using Demo Control..", Debug.SubCategory.Demo);
-				player = new(new Entities.PlayableCharacter("Player"), 0, 0, 0);
+				player = new(new PlayableCharacter("Player"), 0, 0, 0);
 			}
 			else
 			{
