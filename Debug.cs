@@ -30,27 +30,41 @@ public static class Debug
 		}
 	}
 	public static void ApplyDirectory(string fileDirectory, string fileName)
-	{ 
+	{
 		FileDirectory = fileDirectory;
 		FileName = fileName;
 	}
-	public static void Log(string message) => Log(message, isError: false);
-	public static void Log(string message, SubCategory subcategory) => 
-		Log(message, subcategory, false);
-	public static void LogWarning(string message) => Log(message, isError: null);
-	public static void LogWarning(string message, SubCategory subcategory) => 
-		Log(message, subcategory, null);
-	public static void LogError(string message) => 
-		Log(message, isError: true);
-	public static void LogError(string message, SubCategory subcategory) =>
-		Log(message, subcategory, true);
-	private static void Log(string message, SubCategory? subcategory = null, bool? isError = false)
+	public static void Log(string message, SubCategory? category = null)
+		=> Log(message, DefineBox(false, category));
+	public static void LogWarning(string message, SubCategory? category = null)
+		=> Log(message, DefineBox(null, category));
+	public static void LogError(string message, SubCategory? category = null)
+		=> Log(message, DefineBox(true, category));
+	static string DefineBox(bool? type, SubCategory? category = null)
 	{
-		if (FileDirectory == null || fileName == null) throw new NullReferenceException();
-		string currentLog = File.ReadAllText(FileLocation
-			+ $"\n[{isError switch { true => "Info", false => "Error", null => "Warning" }}"
-			+ $"/{(subcategory != null ? $"/{subcategory}" : "")}] {message}");
-		File.WriteAllLines(FileLocation, currentLog.Split('\n'));
+		if (category == null && type == false)
+			return "";
+		else
+		{
+			string box = "[{0}{1}]";
+
+			// Assigning Severity
+			if (type == false) box = box.Replace("{0}", "");
+			else box = box.Replace
+				("{0}", type switch {true => "Error, ", _ => "Warning, "});
+
+			// Assigning Type
+			box = box.Replace("{1}", category.ToString() ?? "");
+			return box;
+		}
+	}
+	static void Log(string message, string box)
+	{
+		if (FileDirectory == null || fileName == null)
+			throw new NullReferenceException();
+		string file = File.ReadAllText(FileLocation);
+		file += $"\n{DateTime.Now} {box} {message}";
+		File.WriteAllText(FileLocation, file);
 	}
 	public enum SubCategory
 	{
